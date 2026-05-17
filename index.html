@@ -8,9 +8,62 @@
 <meta property="og:title" content="Eden Ayurveda Hospital | Heal Naturally, Live Wholly">
 <meta property="og:description" content="Experience authentic Kerala Ayurveda at Eden Ayurveda Hospital. Premium treatments for international wellness travelers.">
 <title>Eden Ayurveda Hospital | Heal Naturally, Live Wholly</title>
-
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23c9a84c'/%3E%3Cstop offset='1' stop-color='%234a7c59'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='60' cy='60' r='54' fill='%230d0d0d' stroke='url(%23g)' stroke-width='4'/%3E%3Cpath d='M60 28c-10 14-17 25-17 38 0 13 8 22 17 26 9-4 17-13 17-26 0-13-7-24-17-38Z' fill='url(%23g)'/%3E%3Cpath d='M60 34v46' stroke='%23f5f0e8' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
-
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.edenayurvedahospital.com/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Eden Ayurveda Hospital | Heal Naturally, Live Wholly">
+<meta name="twitter:description" content="Experience authentic Kerala Ayurveda at Eden Ayurveda Hospital. Premium Panchakarma treatments for international wellness travelers.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.edenayurvedahospital.com/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Hospital",
+  "name": "Eden Ayurveda Hospital",
+  "alternateName": "Eden Ayurveda",
+  "url": "https://www.edenayurvedahospital.com",
+  "logo": "https://www.edenayurvedahospital.com/logo.png",
+  "description": "Premier Kerala Ayurveda hospital offering authentic Panchakarma treatments, medical tourism programs, and holistic wellness retreats for international patients.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Eden Ayurveda Hospital",
+    "addressLocality": "Kanayannur",
+    "addressRegion": "Ernakulam, Kerala",
+    "postalCode": "682020",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "9.9312",
+    "longitude": "76.2673"
+  },
+  "telephone": "+91-XX-XXXX-XXXX",
+  "email": "info@edenayurvedahospital.com",
+  "openingHours": "Mo-Su 08:00-20:00",
+  "priceRange": "$$",
+  "hasMap": "https://maps.google.com/?q=Eden+Ayurveda+Hospital+Kanayannur+Kerala",
+  "medicalSpecialty": ["Ayurveda", "Panchakarma", "Wellness"],
+  "availableService": [
+    {"@type": "MedicalTherapy", "name": "Panchakarma"},
+    {"@type": "MedicalTherapy", "name": "Shirodhara"},
+    {"@type": "MedicalTherapy", "name": "Abhyanga"},
+    {"@type": "MedicalTherapy", "name": "Basti Therapy"},
+    {"@type": "MedicalTherapy", "name": "Virechana"},
+    {"@type": "MedicalTherapy", "name": "Rasayana Chikitsa"}
+  ],
+  "sameAs": [
+    "https://www.facebook.com/edenayurvedahospital",
+    "https://www.instagram.com/edenayurvedahospital"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "342",
+    "bestRating": "5"
+  }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -467,8 +520,6 @@ section { padding: 100px 2rem; }
   display: flex; align-items: center; justify-content: center;
 }
 .hero-ornament-symbol {
-  font-family: "Cormorant Garamond", serif;
-  text-shadow: 0 0 20px rgba(201,168,76,0.25);
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   color: var(--gold);
   opacity: 0.7;
@@ -1862,8 +1913,377 @@ footer {
 .btn-cookie-reject:hover { border-color: var(--border); color: var(--text-secondary); }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   LIGHTBOX
 ============================================ */
+.lightbox-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 9000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: all 0.3s ease;
+}
+.lightbox-overlay.open { opacity: 1; visibility: visible; }
+.lightbox-img-wrap {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+.lightbox-overlay.open .lightbox-img-wrap { transform: scale(1); }
+.lightbox-img-wrap img {
+  max-width: 90vw;
+  max-height: 85vh;
+  display: block;
+  object-fit: contain;
+}
+.lightbox-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 40px; height: 40px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+.lightbox-close:hover { background: rgba(201,168,76,0.5); }
+.lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.lightbox-nav:hover { background: rgba(201,168,76,0.3); border-color: var(--gold); }
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+.lightbox-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: white;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   CONDITIONS TREATED SECTION
+============================================ */
+#conditions {
+  background: var(--bg-primary);
+}
+.conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.condition-group {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  transition: all 0.4s ease;
+}
+.condition-group:hover {
+  border-color: var(--border);
+  transform: translateY(-3px);
+}
+.condition-group-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.condition-group-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+.condition-list {
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.condition-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.condition-item::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@media (max-width: 900px) { .conditions-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .conditions-grid { grid-template-columns: 1fr; } }
+
+/* ============================================
+   WHY CHOOSE US / COMPARISON
+============================================ */
+#why-us {
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+#why-us::before {
+  content: '';
+  position: absolute; top: -30%; right: -10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,168,76,0.04), transparent 70%);
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.why-features {
+  display: flex; flex-direction: column; gap: 1.5rem;
+  margin-top: 2rem;
+}
+.why-feature {
+  display: flex; align-items: flex-start; gap: 1.2rem;
+  padding: 1.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  transition: all 0.3s ease;
+}
+.why-feature:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow-gold);
+}
+.why-feature-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(74,124,89,0.08));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.why-feature-content h4 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+.why-feature-content p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.why-comparison-table {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.comparison-header {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(74,124,89,0.04));
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 0.5rem;
+}
+.comparison-col-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.comparison-col-label.eden { color: var(--gold); font-weight: 600; }
+.comparison-col-label.others { color: var(--text-muted); }
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 0.5rem;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+.comparison-row:last-child { border-bottom: none; }
+.comparison-row:hover { background: rgba(201,168,76,0.03); }
+.comparison-feature-name {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.comparison-check {
+  font-size: 0.85rem;
+  text-align: center;
+}
+.check-yes { color: var(--green-light); font-weight: 700; }
+.check-no { color: var(--text-muted); }
+.check-partial { color: var(--gold); }
+@media (max-width: 900px) {
+  .why-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+/* ============================================
+   HERO PARALLAX ENHANCEMENTS
+============================================ */
+.hero-bg-img {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1800&q=60');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: 0.04;
+  z-index: 0;
+}
+[data-theme="light"] .hero-bg-img { opacity: 0.03; }
+
+/* ============================================
+   ABOUT IMAGES WITH REAL PHOTOS
+============================================ */
+.about-img-main .real-img,
+.about-img-secondary .real-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================
+   GOOGLE MAPS EMBED
+============================================ */
+.map-iframe-wrap {
+  width: 100%; height: 100%;
+  position: relative;
+}
+.map-iframe-wrap iframe {
+  width: 100%; height: 100%;
+  border: none;
+  border-radius: var(--radius-lg);
+  filter: grayscale(0.6) invert(0);
+}
+[data-theme="dark"] .map-iframe-wrap iframe {
+  filter: grayscale(0.5) invert(0.9) hue-rotate(180deg);
+}
+
+/* ============================================
+   AWARDS / RECOGNITION STRIP
+============================================ */
+#recognition {
+  padding: 50px 2rem;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.recognition-inner {
+  max-width: 1300px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 2rem;
+}
+.recognition-title {
+  font-size: 0.68rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.recognition-items {
+  display: flex; align-items: center;
+  flex-wrap: wrap; gap: 2.5rem; flex: 1; justify-content: center;
+}
+.recognition-item {
+  display: flex; align-items: center; gap: 0.8rem;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+  filter: grayscale(1);
+}
+.recognition-item:hover { opacity: 1; filter: none; }
+.recognition-icon { font-size: 1.5rem; }
+.recognition-text {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+}
+.recognition-text strong { display: block; font-size: 0.82rem; color: var(--text-primary); }
+
+/* ============================================
+   PROCESS TIMELINE (detailed)
+============================================ */
+.timeline-horizontal {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  position: relative;
+  margin-top: 3rem;
+}
+.timeline-horizontal::before {
+  content: '';
+  position: absolute;
+  top: 24px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), var(--gold), var(--border), transparent);
+}
+.timeline-step {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+  position: relative;
+}
+.timeline-dot {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  position: relative; z-index: 1;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+.timeline-step:hover .timeline-dot {
+  background: var(--gold);
+  color: #0d0d0d;
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+.timeline-step-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+.timeline-step-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .timeline-horizontal {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .timeline-horizontal::before { display: none; }
+  .timeline-step { flex-direction: row; text-align: left; gap: 1rem; align-items: flex-start; }
+  .timeline-dot { margin-bottom: 0; flex-shrink: 0; }
+}
+
 @media (max-width: 1100px) {
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1926,16 +2346,6 @@ footer {
   .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5, 150px); }
   .gallery-item:nth-child(1) { grid-row: span 2; }
 }
-
-.hero-ornament-center::before{
-  content:'';
-  position:absolute;
-  inset:18%;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(74,124,89,0.18), transparent 70%);
-  filter:blur(8px);
-}
-
 </style>
 </head>
 <body>
@@ -1993,13 +2403,14 @@ footer {
 <!-- ============ HERO ============ -->
 <section id="hero">
   <div class="hero-bg"></div>
+  <div class="hero-bg-img"></div>
   <div class="hero-particles" id="particles"></div>
   <div class="hero-ornament">
     <div class="hero-ornament-ring"></div>
     <div class="hero-ornament-ring"></div>
     <div class="hero-ornament-ring"></div>
     <div class="hero-ornament-center">
-      <span class="hero-ornament-symbol">❋</span>
+      <span class="hero-ornament-symbol">ॐ</span>
     </div>
   </div>
   <div class="hero-content">
@@ -2080,10 +2491,10 @@ footer {
       <div class="reveal-left">
         <div class="about-image-stack">
           <div class="about-img-main">
-            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1400&auto=format&fit=crop" alt="Ayurveda wellness experience">
+            <img class="real-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=700&q=80" alt="Ayurveda massage therapy at Eden Ayurveda Hospital" loading="lazy">
           </div>
           <div class="about-img-secondary">
-            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1400&auto=format&fit=crop" alt="Ayurveda wellness experience">
+            <img class="real-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80" alt="Yoga and meditation at Eden Ayurveda" loading="lazy">
           </div>
           <div class="about-badge">
             <div class="about-badge-num">15+</div>
@@ -2161,7 +2572,7 @@ footer {
       <!-- Panchakarma -->
       <div class="treatment-card reveal" data-category="panchakarma">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#1a2a1a,#2a1a0a);">🛁</div>
+          <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=600&q=75" alt="Vamana Therapy" loading="lazy">
           <span class="treatment-card-tag">Panchakarma</span>
         </div>
         <div class="treatment-card-body">
@@ -2175,7 +2586,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="panchakarma">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#1a1a2a,#2a1a1a);">🌿</div>
+          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=75" alt="Virechana herbal therapy" loading="lazy">
           <span class="treatment-card-tag">Panchakarma</span>
         </div>
         <div class="treatment-card-body">
@@ -2189,7 +2600,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="panchakarma">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#0a1a12,#1a0a12);">💧</div>
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=600&q=75" alt="Basti Vasti therapy" loading="lazy">
           <span class="treatment-card-tag">Panchakarma</span>
         </div>
         <div class="treatment-card-body">
@@ -2204,7 +2615,7 @@ footer {
       <!-- Rejuvenation -->
       <div class="treatment-card reveal" data-category="rejuvenation">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#1a0a00,#2a1a00);">✨</div>
+          <img src="https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=600&q=75" alt="Shirodhara oil therapy" loading="lazy">
           <span class="treatment-card-tag">Rejuvenation</span>
         </div>
         <div class="treatment-card-body">
@@ -2218,7 +2629,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="rejuvenation">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#0d1a10,#1a0d10);">🌸</div>
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=75" alt="Abhyanga full body massage" loading="lazy">
           <span class="treatment-card-tag">Rejuvenation</span>
         </div>
         <div class="treatment-card-body">
@@ -2232,7 +2643,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="rejuvenation">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#1a1200,#1a0000);">🌺</div>
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=75" alt="Rasayana herbal rejuvenation" loading="lazy">
           <span class="treatment-card-tag">Rejuvenation</span>
         </div>
         <div class="treatment-card-body">
@@ -2247,7 +2658,7 @@ footer {
       <!-- Therapeutic -->
       <div class="treatment-card reveal" data-category="therapeutic">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#0a0a1a,#1a0a1a);">🧠</div>
+          <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=600&q=75" alt="Nasya nasal administration therapy" loading="lazy">
           <span class="treatment-card-tag">Therapeutic</span>
         </div>
         <div class="treatment-card-body">
@@ -2261,7 +2672,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="therapeutic">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#0a1510,#150a10);">🦴</div>
+          <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=600&q=75" alt="Kati Basti lower back treatment" loading="lazy">
           <span class="treatment-card-tag">Therapeutic</span>
         </div>
         <div class="treatment-card-body">
@@ -2275,7 +2686,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="therapeutic">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#1a0d0d,#0d1a10);">👁️</div>
+          <img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf9f?auto=format&fit=crop&w=600&q=75" alt="Netra Tarpana eye rejuvenation" loading="lazy">
           <span class="treatment-card-tag">Therapeutic</span>
         </div>
         <div class="treatment-card-body">
@@ -2290,7 +2701,7 @@ footer {
       <!-- Wellness -->
       <div class="treatment-card reveal" data-category="wellness">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#0d1a0d,#1a0d0d);">🧘</div>
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=75" alt="Yoga and meditation sessions" loading="lazy">
           <span class="treatment-card-tag">Wellness</span>
         </div>
         <div class="treatment-card-body">
@@ -2304,7 +2715,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="wellness">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#1a1a0a,#0a1a12);">🍃</div>
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=75" alt="Udvartana herbal powder massage" loading="lazy">
           <span class="treatment-card-tag">Wellness</span>
         </div>
         <div class="treatment-card-body">
@@ -2318,7 +2729,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="panchakarma">
         <div class="treatment-card-img">
-          <div class="img-placeholder" style="background:linear-gradient(135deg,#0a1a1a,#1a0a0a);">🌊</div>
+          <img src="https://images.unsplash.com/photo-1591343395902-1adcb454c4e2?auto=format&fit=crop&w=600&q=75" alt="Pizhichil royal oil treatment" loading="lazy">
           <span class="treatment-card-tag">Panchakarma</span>
         </div>
         <div class="treatment-card-body">
@@ -2357,6 +2768,239 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- ============ CONDITIONS TREATED ============ -->
+<section id="conditions">
+  <div class="container">
+    <div style="text-align:center; max-width:640px; margin:0 auto 1rem;">
+      <div class="section-label reveal" style="justify-content:center;">What We Heal</div>
+      <h2 class="section-title reveal">Conditions <em>Effectively Treated</em><br>Through Ayurveda</h2>
+      <p class="section-subtitle reveal" style="margin:0 auto;">Our physicians have successfully treated thousands of patients across a wide spectrum of chronic and lifestyle-related conditions using classical Ayurvedic protocols.</p>
+    </div>
+    <div class="conditions-grid">
+      <div class="condition-group reveal">
+        <div class="condition-group-icon">🦴</div>
+        <div class="condition-group-title">Musculoskeletal & Joint</div>
+        <div class="condition-list">
+          <div class="condition-item">Rheumatoid Arthritis</div>
+          <div class="condition-item">Osteoarthritis</div>
+          <div class="condition-item">Ankylosing Spondylitis</div>
+          <div class="condition-item">Disc Prolapse / Slip Disc</div>
+          <div class="condition-item">Sciatica & Low Back Pain</div>
+          <div class="condition-item">Cervical Spondylosis</div>
+          <div class="condition-item">Frozen Shoulder</div>
+          <div class="condition-item">Gout</div>
+        </div>
+      </div>
+      <div class="condition-group reveal">
+        <div class="condition-group-icon">🧠</div>
+        <div class="condition-group-title">Neurological</div>
+        <div class="condition-list">
+          <div class="condition-item">Parkinson's Disease</div>
+          <div class="condition-item">Paralysis / Hemiplegia</div>
+          <div class="condition-item">Multiple Sclerosis</div>
+          <div class="condition-item">Migraine & Chronic Headache</div>
+          <div class="condition-item">Peripheral Neuropathy</div>
+          <div class="condition-item">Epilepsy (adjunct therapy)</div>
+          <div class="condition-item">Alzheimer's Support</div>
+          <div class="condition-item">Stress & Anxiety</div>
+        </div>
+      </div>
+      <div class="condition-group reveal">
+        <div class="condition-group-icon">🌿</div>
+        <div class="condition-group-title">Skin & Dermatology</div>
+        <div class="condition-list">
+          <div class="condition-item">Psoriasis</div>
+          <div class="condition-item">Eczema / Dermatitis</div>
+          <div class="condition-item">Vitiligo</div>
+          <div class="condition-item">Chronic Urticaria</div>
+          <div class="condition-item">Acne & Skin Disorders</div>
+          <div class="condition-item">Hair Loss (Alopecia)</div>
+          <div class="condition-item">Premature Ageing</div>
+        </div>
+      </div>
+      <div class="condition-group reveal">
+        <div class="condition-group-icon">💛</div>
+        <div class="condition-group-title">Digestive & Metabolic</div>
+        <div class="condition-list">
+          <div class="condition-item">Irritable Bowel Syndrome (IBS)</div>
+          <div class="condition-item">Ulcerative Colitis</div>
+          <div class="condition-item">Crohn's Disease</div>
+          <div class="condition-item">Chronic Constipation</div>
+          <div class="condition-item">Liver Disorders</div>
+          <div class="condition-item">Type 2 Diabetes Management</div>
+          <div class="condition-item">Obesity & Weight Management</div>
+          <div class="condition-item">Thyroid Disorders</div>
+        </div>
+      </div>
+      <div class="condition-group reveal">
+        <div class="condition-group-icon">🌸</div>
+        <div class="condition-group-title">Women's Health</div>
+        <div class="condition-list">
+          <div class="condition-item">PCOD / PCOS</div>
+          <div class="condition-item">Female Infertility</div>
+          <div class="condition-item">Menstrual Disorders</div>
+          <div class="condition-item">Menopause Symptoms</div>
+          <div class="condition-item">Post-natal Care (Sootika)</div>
+          <div class="condition-item">Uterine Fibroids</div>
+          <div class="condition-item">Leucorrhoea</div>
+        </div>
+      </div>
+      <div class="condition-group reveal">
+        <div class="condition-group-icon">💨</div>
+        <div class="condition-group-title">Respiratory & ENT</div>
+        <div class="condition-list">
+          <div class="condition-item">Bronchial Asthma</div>
+          <div class="condition-item">Chronic Sinusitis</div>
+          <div class="condition-item">Allergic Rhinitis</div>
+          <div class="condition-item">Tinnitus</div>
+          <div class="condition-item">Recurrent Respiratory Infections</div>
+          <div class="condition-item">Chronic Fatigue Syndrome</div>
+          <div class="condition-item">Insomnia & Sleep Disorders</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:3rem;" class="reveal">
+      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">Don't see your condition? Our physicians treat many more conditions. Reach out for a personalized assessment.</p>
+      <a href="#contact" class="btn-primary">Discuss Your Condition →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CHOOSE US ============ -->
+<section id="why-us">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <div class="section-label reveal">Why Eden Ayurveda</div>
+        <h2 class="section-title reveal">Not All Ayurveda<br><em>Is Created Equal</em></h2>
+        <div class="divider reveal"></div>
+        <p class="section-subtitle reveal">Eden Ayurveda Hospital maintains the highest standards of classical Ayurvedic practice — where every procedure is authentic, every physician is formally trained, and every patient receives genuinely individualized care.</p>
+        <div class="why-features">
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">🔬</div>
+            <div class="why-feature-content">
+              <h4>Physician-Led, Not Therapist-Led</h4>
+              <p>Every treatment program is prescribed and supervised by a qualified BAMS or MD Ayurveda physician — not delegated to therapists without medical oversight.</p>
+            </div>
+          </div>
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">🌿</div>
+            <div class="why-feature-content">
+              <h4>Authentic Classical Protocols</h4>
+              <p>We follow the original Panchakarma procedures as documented in Charaka Samhita and Ashtanga Hridayam — including proper Poorvakarma preparation and Paschatkarma follow-up.</p>
+            </div>
+          </div>
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">💊</div>
+            <div class="why-feature-content">
+              <h4>In-House Herbal Pharmacy</h4>
+              <p>Medicines are freshly prepared on-site using certified organic herbs, ensuring maximum potency, purity, and authenticity — free from heavy metals and adulterants.</p>
+            </div>
+          </div>
+          <div class="why-feature reveal">
+            <div class="why-feature-icon">🌍</div>
+            <div class="why-feature-content">
+              <h4>Dedicated International Services</h4>
+              <p>A full international patient support team handles visa letters, airport logistics, translation, dietary preferences, and ongoing post-departure follow-up care.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="why-comparison-table">
+          <div class="comparison-header">
+            <span class="comparison-col-label" style="color:var(--text-muted);">Feature</span>
+            <span class="comparison-col-label eden">Eden Ayurveda</span>
+            <span class="comparison-col-label others">Typical Others</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">Qualified MD/BAMS Physicians</span>
+            <span class="comparison-check check-yes">✓ Always</span>
+            <span class="comparison-check check-partial">Sometimes</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">Classical Panchakarma (full protocol)</span>
+            <span class="comparison-check check-yes">✓ Yes</span>
+            <span class="comparison-check check-no">Partial</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">Daily physician consultation</span>
+            <span class="comparison-check check-yes">✓ Every day</span>
+            <span class="comparison-check check-partial">Varies</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">In-house herbal pharmacy</span>
+            <span class="comparison-check check-yes">✓ Yes</span>
+            <span class="comparison-check check-no">Rarely</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">International visa letter</span>
+            <span class="comparison-check check-yes">✓ Provided</span>
+            <span class="comparison-check check-no">Often not</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">Airport transfers included</span>
+            <span class="comparison-check check-yes">✓ Complimentary</span>
+            <span class="comparison-check check-partial">Extra cost</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">Post-discharge telemedicine</span>
+            <span class="comparison-check check-yes">✓ 3 months</span>
+            <span class="comparison-check check-no">Rarely</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">Ayurvedic diet & meals</span>
+            <span class="comparison-check check-yes">✓ Included</span>
+            <span class="comparison-check check-partial">Sometimes</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">Yoga & meditation program</span>
+            <span class="comparison-check check-yes">✓ Daily</span>
+            <span class="comparison-check check-partial">Optional</span>
+          </div>
+          <div class="comparison-row">
+            <span class="comparison-feature-name">English-speaking coordinators</span>
+            <span class="comparison-check check-yes">✓ Dedicated</span>
+            <span class="comparison-check check-partial">Limited</span>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:1.5rem;" class="reveal">
+          <a href="#contact" class="btn-primary">Book a Free Consultation →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECOGNITION STRIP ============ -->
+<div id="recognition">
+  <div class="recognition-inner">
+    <span class="recognition-title">Trusted &amp; Recognised By</span>
+    <div class="recognition-items">
+      <div class="recognition-item">
+        <span class="recognition-icon">🏛️</span>
+        <div class="recognition-text"><strong>Ministry of AYUSH</strong>Government of India</div>
+      </div>
+      <div class="recognition-item">
+        <span class="recognition-icon">⭐</span>
+        <div class="recognition-text"><strong>4.9 / 5.0</strong>342 Verified Reviews</div>
+      </div>
+      <div class="recognition-item">
+        <span class="recognition-icon">🏥</span>
+        <div class="recognition-text"><strong>Kerala State</strong>AYUSH Registered</div>
+      </div>
+      <div class="recognition-item">
+        <span class="recognition-icon">🌐</span>
+        <div class="recognition-text"><strong>Medical Tourism</strong>Association Member</div>
+      </div>
+      <div class="recognition-item">
+        <span class="recognition-icon">🛡️</span>
+        <div class="recognition-text"><strong>ISO Standards</strong>Quality Certified</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ============ MEDICAL TOURISM ============ -->
 <section id="medical-tourism">
@@ -2452,7 +3096,7 @@ footer {
     <div class="doctors-grid">
       <div class="doctor-card reveal">
         <div class="doctor-img">
-          <div class="img-placeholder" style="height:100%; font-size:3rem; background:linear-gradient(135deg,#1a1200,#001a10);">👨‍⚕️</div>
+          <img class="doctor-img-inner" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=500&q=80" alt="Chief Physician at Eden Ayurveda Hospital" loading="lazy">
           <span class="doctor-specialty">Chief Physician</span>
         </div>
         <div class="doctor-body">
@@ -2468,7 +3112,7 @@ footer {
       </div>
       <div class="doctor-card reveal">
         <div class="doctor-img">
-          <div class="img-placeholder" style="height:100%; font-size:3rem; background:linear-gradient(135deg,#001212,#120012);">👩‍⚕️</div>
+          <img class="doctor-img-inner" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=500&q=80" alt="Senior Physician at Eden Ayurveda" loading="lazy">
           <span class="doctor-specialty">Senior Physician</span>
         </div>
         <div class="doctor-body">
@@ -2484,7 +3128,7 @@ footer {
       </div>
       <div class="doctor-card reveal">
         <div class="doctor-img">
-          <div class="img-placeholder" style="height:100%; font-size:3rem; background:linear-gradient(135deg,#120a00,#001210);">👨‍⚕️</div>
+          <img class="doctor-img-inner" src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=500&q=80" alt="Panchakarma Specialist at Eden Ayurveda" loading="lazy">
           <span class="doctor-specialty">Panchakarma Specialist</span>
         </div>
         <div class="doctor-body">
@@ -2500,7 +3144,7 @@ footer {
       </div>
       <div class="doctor-card reveal">
         <div class="doctor-img">
-          <div class="img-placeholder" style="height:100%; font-size:3rem; background:linear-gradient(135deg,#001a08,#0a0010);">👩‍⚕️</div>
+          <img class="doctor-img-inner" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=500&q=80" alt="Wellness Consultant at Eden Ayurveda" loading="lazy">
           <span class="doctor-specialty">Wellness Consultant</span>
         </div>
         <div class="doctor-body">
@@ -2523,41 +3167,77 @@ footer {
   <div style="padding:80px 2rem 0; max-width:1300px; margin:0 auto 3rem;">
     <div class="section-label reveal">The Experience</div>
     <h2 class="section-title reveal">Immerse Yourself in<br><em>Kerala's Healing Sanctuary</em></h2>
+    <p class="section-subtitle reveal" style="margin-top:0.5rem;">Our hospital is set amid the lush greenery of Kanayannur, offering a serene, nature-immersed environment that itself becomes part of the healing process.</p>
   </div>
   <div class="wellness-grid">
-    <div class="wellness-cell">
-      <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#0a1a0a,#1a0a0a);font-size:4rem;">🌿</div>
+    <div class="wellness-cell" onclick="openLightbox(0)">
+      <img class="wellness-cell-img" src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1000&q=75" alt="Kerala Ayurveda healing environment" loading="lazy">
       <div class="wellness-cell-overlay">
         <div class="wellness-cell-title">Nature-Immersed Healing</div>
         <div class="wellness-cell-sub">Lush Kerala greenery surrounds every treatment</div>
       </div>
     </div>
-    <div class="wellness-cell">
-      <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#1a1200,#001a12);font-size:2.5rem;">✨</div>
+    <div class="wellness-cell" onclick="openLightbox(1)">
+      <img class="wellness-cell-img" src="https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=600&q=75" alt="Shirodhara oil therapy" loading="lazy">
       <div class="wellness-cell-overlay">
         <div class="wellness-cell-title">Shirodhara</div>
         <div class="wellness-cell-sub">The deeply meditative oil therapy</div>
       </div>
     </div>
-    <div class="wellness-cell">
-      <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#0a001a,#001a0a);font-size:2.5rem;">🧘</div>
+    <div class="wellness-cell" onclick="openLightbox(2)">
+      <img class="wellness-cell-img" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=75" alt="Sunrise yoga sessions" loading="lazy">
       <div class="wellness-cell-overlay">
         <div class="wellness-cell-title">Sunrise Yoga</div>
         <div class="wellness-cell-sub">Daily practice for mind-body alignment</div>
       </div>
     </div>
-    <div class="wellness-cell">
-      <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#1a0a0a,#0a1a0a);font-size:2.5rem;">🍃</div>
+    <div class="wellness-cell" onclick="openLightbox(3)">
+      <img class="wellness-cell-img" src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=75" alt="Herbal pharmacy and medicines" loading="lazy">
       <div class="wellness-cell-overlay">
         <div class="wellness-cell-title">Herbal Pharmacy</div>
         <div class="wellness-cell-sub">Freshly prepared classical formulations</div>
       </div>
     </div>
-    <div class="wellness-cell">
-      <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#001212,#120012);font-size:2.5rem;">🌺</div>
+    <div class="wellness-cell" onclick="openLightbox(4)">
+      <img class="wellness-cell-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=75" alt="Private Ayurveda treatment rooms" loading="lazy">
       <div class="wellness-cell-overlay">
         <div class="wellness-cell-title">Treatment Rooms</div>
         <div class="wellness-cell-sub">Serene, private healing spaces</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Patient Journey Timeline -->
+  <div style="padding:80px 2rem; max-width:1300px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <div class="section-label reveal" style="justify-content:center;">Your Journey</div>
+      <h2 class="section-title reveal">A Typical Day<br><em>at Eden Ayurveda</em></h2>
+    </div>
+    <div class="timeline-horizontal">
+      <div class="timeline-step reveal">
+        <div class="timeline-dot">6</div>
+        <div class="timeline-step-title">Morning Rituals</div>
+        <div class="timeline-step-desc">Wake with the sun. Morning herb teas, gentle pranayama, and meditation to prepare body and mind.</div>
+      </div>
+      <div class="timeline-step reveal">
+        <div class="timeline-dot">8</div>
+        <div class="timeline-step-title">Physician Round</div>
+        <div class="timeline-step-desc">Daily consultation with your doctor. Pulse assessment, progress review, treatment adjustments.</div>
+      </div>
+      <div class="timeline-step reveal">
+        <div class="timeline-dot">9</div>
+        <div class="timeline-step-title">Core Treatment</div>
+        <div class="timeline-step-desc">Your prescribed Panchakarma or therapeutic treatments administered by expert therapists.</div>
+      </div>
+      <div class="timeline-step reveal">
+        <div class="timeline-dot">12</div>
+        <div class="timeline-step-title">Ayurvedic Meal</div>
+        <div class="timeline-step-desc">Doctor-prescribed Ayurvedic lunch. Fresh, warm, seasonal, vegetarian — prepared in our own kitchen.</div>
+      </div>
+      <div class="timeline-step reveal">
+        <div class="timeline-dot">17</div>
+        <div class="timeline-step-title">Yoga & Rest</div>
+        <div class="timeline-step-desc">Evening yoga, meditation, and the deep rest your body needs to heal and integrate the day's treatments.</div>
       </div>
     </div>
   </div>
@@ -2850,32 +3530,32 @@ footer {
       <h2 class="section-title reveal">A Sanctuary of<br><em>Healing & Serenity</em></h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item reveal">
-        <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#0a1a0a,#1a0a0a);font-size:3rem;">🌿</div>
+      <div class="gallery-item reveal" onclick="openLightbox(0)" data-caption="Traditional Ayurveda Treatment">
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=75" alt="Ayurveda massage therapy" loading="lazy">
         <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
       </div>
-      <div class="gallery-item reveal">
-        <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#1a1200,#001a12);font-size:2rem;">✨</div>
+      <div class="gallery-item reveal" onclick="openLightbox(1)" data-caption="Shirodhara Oil Therapy">
+        <img src="https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=500&q=75" alt="Shirodhara forehead oil treatment" loading="lazy">
         <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
       </div>
-      <div class="gallery-item reveal">
-        <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#0a001a,#001a0a);font-size:2rem;">🧘</div>
+      <div class="gallery-item reveal" onclick="openLightbox(2)" data-caption="Morning Yoga Practice">
+        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=75" alt="Yoga at Eden Ayurveda" loading="lazy">
         <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
       </div>
-      <div class="gallery-item reveal">
-        <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#1a0a0a,#0a1a0a);font-size:2rem;">🌺</div>
+      <div class="gallery-item reveal" onclick="openLightbox(3)" data-caption="Herbal Medicine Preparation">
+        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=75" alt="Herbal medicines and ingredients" loading="lazy">
         <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
       </div>
-      <div class="gallery-item reveal">
-        <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#001212,#120012);font-size:2rem;">💧</div>
+      <div class="gallery-item reveal" onclick="openLightbox(4)" data-caption="Kerala Natural Surroundings">
+        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=900&q=75" alt="Kerala nature and environment" loading="lazy">
         <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
       </div>
-      <div class="gallery-item reveal">
-        <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#120a00,#001210);font-size:2rem;">🍵</div>
+      <div class="gallery-item reveal" onclick="openLightbox(5)" data-caption="Meditation & Inner Peace">
+        <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=500&q=75" alt="Meditation at Eden Ayurveda" loading="lazy">
         <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
       </div>
-      <div class="gallery-item reveal">
-        <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#0a1a12,#12000a);font-size:2rem;">🌿</div>
+      <div class="gallery-item reveal" onclick="openLightbox(6)" data-caption="Therapeutic Treatment Session">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=500&q=75" alt="Therapeutic Ayurveda session" loading="lazy">
         <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
       </div>
     </div>
@@ -2895,7 +3575,7 @@ footer {
     <div class="blog-grid">
       <div class="blog-card featured reveal">
         <div class="blog-img">
-          <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#0a1a0a,#1a0a0a);font-size:3rem;">🌿</div>
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=75" alt="Panchakarma detox guide" loading="lazy">
         </div>
         <div class="blog-body">
           <div class="blog-tag">Panchakarma</div>
@@ -2910,7 +3590,7 @@ footer {
       </div>
       <div class="blog-card reveal">
         <div class="blog-img">
-          <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#1a1200,#001a12);font-size:2rem;">✨</div>
+          <img src="https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=500&q=75" alt="Shirodhara ancient therapy" loading="lazy">
         </div>
         <div class="blog-body">
           <div class="blog-tag">Shirodhara</div>
@@ -2925,7 +3605,7 @@ footer {
       </div>
       <div class="blog-card reveal">
         <div class="blog-img">
-          <div class="img-placeholder" style="height:100%;background:linear-gradient(135deg,#0a001a,#1a0a0a);font-size:2rem;">🦴</div>
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=75" alt="Ayurveda arthritis treatment" loading="lazy">
         </div>
         <div class="blog-body">
           <div class="blog-tag">Arthritis</div>
@@ -2981,11 +3661,16 @@ footer {
             </div>
           </div>
         </div>
-        <div class="map-container reveal">
-          <div class="map-placeholder">
-            <span class="map-placeholder-icon">📍</span>
-            <span>Eden Ayurveda Hospital<br>Kanayannur, Kerala, India</span>
-            <a href="https://maps.google.com/?q=Eden+Ayurveda+Hospital+Kanayannur+Kerala" target="_blank" class="btn-outline" style="margin-top:0.5rem; font-size:0.72rem; padding:0.5rem 1.2rem;">Open in Google Maps →</a>
+        <div class="map-container reveal" style="height:300px; padding:0; overflow:hidden;">
+          <div class="map-iframe-wrap" style="height:100%;">
+            <iframe
+              title="Eden Ayurveda Hospital Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31476.89399066903!2d76.2440263!3d9.9312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b087b6bbbbbbbbb%3A0x0!2sKanayannur%2C%20Kerala%20682020!5e0!3m2!1sen!2sin!4v1699000000000!5m2!1sen!2sin"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              style="width:100%;height:100%;border:none;border-radius:var(--radius-lg);">
+            </iframe>
           </div>
         </div>
       </div>
@@ -3127,6 +3812,17 @@ footer {
   </div>
 </footer>
 
+<!-- ============ LIGHTBOX MODAL ============ -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightboxOnOverlay(event)">
+  <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)" aria-label="Previous">←</button>
+  <div class="lightbox-img-wrap">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+  <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)" aria-label="Next">→</button>
+</div>
+
 <!-- ============ FLOATING ELEMENTS ============ -->
 <div class="whatsapp-float">
   <div class="whatsapp-tooltip">Chat with us on WhatsApp</div>
@@ -3157,32 +3853,35 @@ footer {
 
 <!-- ============ JAVASCRIPT ============ -->
 <script>
-// Loading Screen
+// ============================================
+// LOADING SCREEN
+// ============================================
 window.addEventListener('load', () => {
   setTimeout(() => {
     document.getElementById('loading-screen').classList.add('hidden');
   }, 2200);
 });
 
-// Scroll Progress
+// ============================================
+// SCROLL PROGRESS BAR
+// ============================================
 window.addEventListener('scroll', () => {
   const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
   const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (winScroll / height) * 100;
-  document.getElementById('scroll-progress').style.width = scrolled + '%';
-});
+  document.getElementById('scroll-progress').style.width = ((winScroll / height) * 100) + '%';
+}, { passive: true });
 
-// Navbar scroll
+// ============================================
+// NAVBAR — SCROLLED STATE
+// ============================================
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
 
-// Theme Toggle
+// ============================================
+// THEME TOGGLE
+// ============================================
 const themeToggle = document.getElementById('theme-toggle');
 let isDark = true;
 themeToggle.addEventListener('click', () => {
@@ -3191,68 +3890,90 @@ themeToggle.addEventListener('click', () => {
   themeToggle.textContent = isDark ? '☽' : '☀';
 });
 
-// Hamburger
+// ============================================
+// HAMBURGER MENU
+// ============================================
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 hamburger.addEventListener('click', () => {
   hamburger.classList.toggle('active');
   mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
 });
 function closeMobile() {
   hamburger.classList.remove('active');
   mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
 }
 
-// Particles
+// ============================================
+// HERO PARTICLES
+// ============================================
 function createParticles() {
   const container = document.getElementById('particles');
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < 30; i++) {
     const p = document.createElement('div');
     p.className = 'particle';
     p.style.left = Math.random() * 100 + '%';
     p.style.top = Math.random() * 100 + '%';
     p.style.setProperty('--dur', (6 + Math.random() * 8) + 's');
-    p.style.setProperty('--delay', (Math.random() * 5) + 's');
-    p.style.width = (Math.random() > 0.7 ? 2 : 1) + 'px';
-    p.style.height = p.style.width;
+    p.style.setProperty('--delay', (Math.random() * 6) + 's');
+    const size = Math.random() > 0.75 ? '2px' : '1px';
+    p.style.width = size; p.style.height = size;
     container.appendChild(p);
   }
 }
 createParticles();
 
-// Intersection Observer for reveal animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+// ============================================
+// PARALLAX — hero background on scroll
+// ============================================
+const heroBgImg = document.querySelector('.hero-bg-img');
+window.addEventListener('scroll', () => {
+  if (heroBgImg && window.scrollY < window.innerHeight) {
+    heroBgImg.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+  }
+}, { passive: true });
 
+// ============================================
+// INTERSECTION OBSERVER — REVEAL ANIMATIONS
+// ============================================
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-  observer.observe(el);
+  revealObserver.observe(el);
 });
 
-// Counter animation
+// ============================================
+// STAGGER DELAYS ON CHILD ELEMENTS
+// ============================================
+document.querySelectorAll('.treatments-grid .treatment-card').forEach((c, i) => c.style.transitionDelay = (i * 0.07) + 's');
+document.querySelectorAll('.doctors-grid .doctor-card').forEach((c, i) => c.style.transitionDelay = (i * 0.1) + 's');
+document.querySelectorAll('.tourism-steps .tourism-step').forEach((c, i) => c.style.transitionDelay = (i * 0.1) + 's');
+document.querySelectorAll('.conditions-grid .condition-group').forEach((c, i) => c.style.transitionDelay = (i * 0.08) + 's');
+document.querySelectorAll('.why-features .why-feature').forEach((c, i) => c.style.transitionDelay = (i * 0.1) + 's');
+document.querySelectorAll('.timeline-step').forEach((c, i) => c.style.transitionDelay = (i * 0.12) + 's');
+
+// ============================================
+// COUNTER ANIMATION
+// ============================================
 function animateCounter(el, target) {
   let current = 0;
-  const duration = 2000;
-  const step = target / (duration / 16);
+  const step = target / (2000 / 16);
+  const suffix = el.dataset.suffix || '';
   const timer = setInterval(() => {
-    current += step;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-    el.textContent = Math.floor(current).toLocaleString();
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current).toLocaleString() + suffix;
+    if (current >= target) clearInterval(timer);
   }, 16);
 }
-
 const statsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const nums = entry.target.querySelectorAll('[data-target]');
-      nums.forEach(num => {
+      entry.target.querySelectorAll('[data-target]').forEach(num => {
         animateCounter(num, parseInt(num.dataset.target));
       });
       statsObserver.unobserve(entry.target);
@@ -3262,31 +3983,37 @@ const statsObserver = new IntersectionObserver((entries) => {
 const statsSection = document.getElementById('stats');
 if (statsSection) statsObserver.observe(statsSection);
 
-// Treatment filter
+// ============================================
+// TREATMENT FILTER TABS
+// ============================================
 function filterTreatments(category, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.treatment-card').forEach(card => {
-    if (category === 'all' || card.dataset.category === category) {
+  let delay = 0;
+  document.querySelectorAll('.treatment-card').forEach((card, i) => {
+    const show = category === 'all' || card.dataset.category === category;
+    if (!show) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(12px) scale(0.97)';
+      setTimeout(() => card.style.display = 'none', 280);
+    } else {
       card.style.display = '';
       setTimeout(() => {
         card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, 50);
-    } else {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(10px)';
-      setTimeout(() => { card.style.display = 'none'; }, 300);
+        card.style.transform = 'translateY(0) scale(1)';
+      }, 50 + delay);
+      delay += 50;
     }
   });
 }
 
-// FAQ accordion
+// ============================================
+// FAQ ACCORDION
+// ============================================
 function toggleFaq(questionEl) {
   const item = questionEl.parentElement;
   const answer = item.querySelector('.faq-answer');
   const isOpen = item.classList.contains('open');
-  // Close all
   document.querySelectorAll('.faq-item').forEach(i => {
     i.classList.remove('open');
     i.querySelector('.faq-answer').style.maxHeight = '0';
@@ -3297,66 +4024,208 @@ function toggleFaq(questionEl) {
   }
 }
 
-// Testimonials
-let testScroll = 0;
+// ============================================
+// TESTIMONIALS — MANUAL + AUTO-ROTATE
+// ============================================
+let testScrollPos = 0;
+let autoTestTimer;
+
 function scrollTestimonials(dir) {
   const track = document.getElementById('testimonials-track');
-  const cardWidth = track.querySelector('.testimonial-card').offsetWidth + 24;
-  testScroll = Math.max(0, Math.min(testScroll + dir * cardWidth, track.scrollWidth - track.clientWidth));
-  track.scrollTo({ left: testScroll, behavior: 'smooth' });
+  const card = track.querySelector('.testimonial-card');
+  if (!card) return;
+  const cardWidth = card.offsetWidth + 24;
+  testScrollPos = Math.max(0, Math.min(testScrollPos + dir * cardWidth, track.scrollWidth - track.clientWidth));
+  track.scrollTo({ left: testScrollPos, behavior: 'smooth' });
   updateDots();
+  resetAutoTest();
 }
+
 function updateDots() {
   const track = document.getElementById('testimonials-track');
   const dots = document.querySelectorAll('.tc-dot');
-  const cardWidth = track.querySelector('.testimonial-card').offsetWidth + 24;
+  const card = track.querySelector('.testimonial-card');
+  if (!card) return;
+  const cardWidth = card.offsetWidth + 24;
   const active = Math.round(track.scrollLeft / cardWidth);
   dots.forEach((d, i) => d.classList.toggle('active', i === active));
+  testScrollPos = track.scrollLeft;
 }
-document.getElementById('testimonials-track')?.addEventListener('scroll', updateDots);
 
-// Sticky CTA
-const stickyCTA = document.getElementById('sticky-cta');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 400) {
-    stickyCTA.classList.add('visible');
-  } else {
-    stickyCTA.classList.remove('visible');
-  }
+function autoTestScroll() {
+  const track = document.getElementById('testimonials-track');
+  const card = track.querySelector('.testimonial-card');
+  if (!card) return;
+  const cardWidth = card.offsetWidth + 24;
+  const maxScroll = track.scrollWidth - track.clientWidth;
+  testScrollPos = testScrollPos >= maxScroll - 5 ? 0 : testScrollPos + cardWidth;
+  track.scrollTo({ left: testScrollPos, behavior: 'smooth' });
+  updateDots();
+}
+
+function resetAutoTest() {
+  clearInterval(autoTestTimer);
+  autoTestTimer = setInterval(autoTestScroll, 5000);
+}
+
+const testTrack = document.getElementById('testimonials-track');
+if (testTrack) {
+  testTrack.addEventListener('scroll', updateDots, { passive: true });
+  // Start auto-rotation after 3s
+  setTimeout(() => { autoTestTimer = setInterval(autoTestScroll, 5000); }, 3000);
+  // Pause on hover
+  testTrack.addEventListener('mouseenter', () => clearInterval(autoTestTimer));
+  testTrack.addEventListener('mouseleave', resetAutoTest);
+}
+
+// Dot clicks
+document.querySelectorAll('.tc-dot').forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    const track = document.getElementById('testimonials-track');
+    const card = track.querySelector('.testimonial-card');
+    if (!card) return;
+    testScrollPos = i * (card.offsetWidth + 24);
+    track.scrollTo({ left: testScrollPos, behavior: 'smooth' });
+    updateDots();
+    resetAutoTest();
+  });
 });
 
-// Form submit
-function submitForm() {
-  const btn = event.target;
-  btn.textContent = '✓ Inquiry Sent — We\'ll respond within 24h';
-  btn.style.background = 'var(--green)';
-  btn.disabled = true;
+// ============================================
+// GALLERY LIGHTBOX
+// ============================================
+const lightboxImages = [
+  { src: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1400&q=85', caption: 'Authentic Ayurveda Massage Therapy' },
+  { src: 'https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=1400&q=85', caption: 'Shirodhara — Sacred Oil Therapy' },
+  { src: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1400&q=85', caption: 'Morning Yoga & Meditation Practice' },
+  { src: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1400&q=85', caption: 'Classical Herbal Medicine Preparation' },
+  { src: 'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1400&q=85', caption: 'Kerala Natural Healing Environment' },
+  { src: 'https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=1400&q=85', caption: 'Deep Meditation & Inner Peace' },
+  { src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1400&q=85', caption: 'Personalized Therapeutic Treatment' },
+];
+let currentLightboxIndex = 0;
+
+function openLightbox(index) {
+  currentLightboxIndex = index;
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const cap = document.getElementById('lightbox-caption');
+  const item = lightboxImages[index];
+  if (!item) return;
+  img.src = item.src;
+  img.alt = item.caption;
+  cap.textContent = item.caption;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
 
-// Cookie banner
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOnOverlay(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+function lightboxNav(dir) {
+  currentLightboxIndex = (currentLightboxIndex + dir + lightboxImages.length) % lightboxImages.length;
+  openLightbox(currentLightboxIndex);
+}
+
+// Keyboard support for lightbox
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') lightboxNav(1);
+  if (e.key === 'ArrowLeft') lightboxNav(-1);
+});
+
+// ============================================
+// STICKY CTA VISIBILITY
+// ============================================
+const stickyCTA = document.getElementById('sticky-cta');
+window.addEventListener('scroll', () => {
+  stickyCTA.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+// ============================================
+// CONTACT FORM SUBMIT
+// ============================================
+function submitForm() {
+  const gdpr = document.getElementById('gdpr');
+  if (!gdpr.checked) {
+    alert('Please accept the privacy policy to send your inquiry.');
+    return;
+  }
+  const btn = document.querySelector('#contact .btn-primary[onclick]');
+  if (btn) {
+    btn.textContent = '✓ Inquiry Sent — We\'ll respond within 24 hours';
+    btn.style.background = 'var(--green)';
+    btn.style.borderColor = 'var(--green)';
+    btn.disabled = true;
+  }
+}
+
+// ============================================
+// GDPR COOKIE BANNER
+// ============================================
 setTimeout(() => {
-  if (!localStorage.getItem('cookieConsent')) {
+  if (!localStorage.getItem('edenCookieConsent')) {
     document.getElementById('cookie-banner').classList.add('visible');
   }
-}, 3000);
+}, 3500);
 function acceptCookies() {
-  localStorage.setItem('cookieConsent', 'accepted');
+  localStorage.setItem('edenCookieConsent', 'accepted');
   document.getElementById('cookie-banner').classList.remove('visible');
 }
 function rejectCookies() {
-  localStorage.setItem('cookieConsent', 'rejected');
+  localStorage.setItem('edenCookieConsent', 'rejected');
   document.getElementById('cookie-banner').classList.remove('visible');
 }
 
-// Smooth reveal on scroll - stagger children
-document.querySelectorAll('.treatments-grid .treatment-card').forEach((card, i) => {
-  card.style.transitionDelay = (i * 0.08) + 's';
+// ============================================
+// ACTIVE NAV LINK ON SCROLL
+// ============================================
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const activeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + entry.target.id ? 'var(--gold)' : '';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => activeObserver.observe(s));
+
+// ============================================
+// SMOOTH HOVER EFFECT ON WHY FEATURE ROWS
+// ============================================
+document.querySelectorAll('.comparison-row').forEach(row => {
+  row.addEventListener('mouseenter', () => row.style.background = 'rgba(201,168,76,0.03)');
+  row.addEventListener('mouseleave', () => row.style.background = '');
 });
-document.querySelectorAll('.doctors-grid .doctor-card').forEach((card, i) => {
-  card.style.transitionDelay = (i * 0.1) + 's';
-});
-document.querySelectorAll('.tourism-steps .tourism-step').forEach((step, i) => {
-  step.style.transitionDelay = (i * 0.1) + 's';
+
+// ============================================
+// NEWSLETTER FORM FEEDBACK
+// ============================================
+document.querySelectorAll('.footer-newsletter button').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const input = this.previousElementSibling;
+    if (input && input.value && input.value.includes('@')) {
+      this.textContent = '✓ Subscribed!';
+      this.style.background = 'var(--green)';
+      input.value = '';
+      input.disabled = true;
+      this.disabled = true;
+    } else {
+      input.style.borderColor = 'rgba(201,68,68,0.5)';
+      setTimeout(() => input.style.borderColor = '', 1500);
+    }
+  });
 });
 </script>
 
