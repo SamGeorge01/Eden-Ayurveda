@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,6 +64,7 @@
   }
 }
 </script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23213a2b'/%3E%3Cpath d='M50 15 C50 15 18 38 18 60 C18 75 32 85 50 85 C68 85 82 75 82 60 C82 38 50 15 50 15Z' fill='none' stroke='%23a8c5a0' stroke-width='3'/%3E%3Cline x1='50' y1='15' x2='50' y2='88' stroke='%23a8c5a0' stroke-width='2.5'/%3E%3Cellipse cx='50' cy='80' rx='14' ry='5' fill='none' stroke='%23a8c5a0' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -73,21 +74,21 @@
    CSS CUSTOM PROPERTIES & THEME SYSTEM
 ============================================ */
 :root {
-  --bg-primary: #0d0d0d;
-  --bg-secondary: #141414;
-  --bg-tertiary: #1a1a1a;
-  --bg-card: #181818;
-  --text-primary: #f5f0e8;
-  --text-secondary: #b8ab97;
-  --text-muted: #6b6459;
-  --gold: #c9a84c;
-  --gold-light: #e8cc7a;
-  --gold-dark: #a07830;
-  --green: #4a7c59;
-  --green-light: #6aad7e;
-  --border: rgba(201,168,76,0.15);
-  --border-subtle: rgba(255,255,255,0.06);
-  --shadow-gold: 0 0 40px rgba(201,168,76,0.08);
+  --bg-primary: #111a14;
+  --bg-secondary: #162019;
+  --bg-tertiary: #1c2a1f;
+  --bg-card: #192216;
+  --text-primary: #eef4ec;
+  --text-secondary: #9ab89e;
+  --text-muted: #5a7a60;
+  --gold: #a8c5a0;
+  --gold-light: #c2d9bb;
+  --gold-dark: #6e9e74;
+  --green: #3d7a52;
+  --green-light: #5aaa72;
+  --border: rgba(168,197,160,0.18);
+  --border-subtle: rgba(255,255,255,0.07);
+  --shadow-gold: 0 0 40px rgba(90,170,114,0.08);
   --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
   --radius: 12px;
   --radius-lg: 20px;
@@ -97,19 +98,6 @@
   --font-body: 'Outfit', system-ui, sans-serif;
 }
 
-[data-theme="light"] {
-  --bg-primary: #faf8f4;
-  --bg-secondary: #f3ede4;
-  --bg-tertiary: #ede5d8;
-  --bg-card: #ffffff;
-  --text-primary: #1a1510;
-  --text-secondary: #5a4e3f;
-  --text-muted: #9a8e7e;
-  --border: rgba(201,168,76,0.25);
-  --border-subtle: rgba(0,0,0,0.08);
-  --shadow-gold: 0 0 40px rgba(201,168,76,0.12);
-  --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
-}
 
 /* ============================================
    RESET & BASE
@@ -146,7 +134,7 @@ ul { list-style: none; }
 ============================================ */
 #loading-screen {
   position: fixed; inset: 0;
-  background: #0d0d0d;
+  background: #0e1610;
   display: flex; align-items: center; justify-content: center;
   z-index: 10000;
   transition: opacity 0.6s ease, visibility 0.6s ease;
@@ -194,13 +182,12 @@ nav {
   transition: all 0.4s ease;
 }
 nav.scrolled {
-  background: rgba(13,13,13,0.92);
+  background: rgba(14,22,16,0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
   padding: 0 2rem;
 }
-[data-theme="light"] nav.scrolled {
   background: rgba(250,248,244,0.92);
 }
 .nav-inner {
@@ -256,11 +243,6 @@ nav.scrolled {
 .nav-actions {
   display: flex; align-items: center; gap: 1rem;
 }
-.nav-actions-divider {
-  width: 1px; height: 22px;
-  background: var(--border-subtle);
-  margin: 0 0.25rem;
-}
 .btn-nav {
   padding: 0.55rem 1.4rem;
   font-size: 0.75rem;
@@ -275,16 +257,6 @@ nav.scrolled {
   background: var(--gold);
   color: #0d0d0d;
 }
-.btn-theme {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--border-subtle);
-  color: var(--text-secondary);
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-}
-.btn-theme:hover { border-color: var(--gold); color: var(--gold); }
 .hamburger {
   display: none;
   flex-direction: column;
@@ -305,7 +277,7 @@ nav.scrolled {
 /* Mobile nav */
 .mobile-menu {
   position: fixed; top: 80px; left: 0; right: 0;
-  background: rgba(13,13,13,0.97);
+  background: rgba(14,22,16,0.97);
   backdrop-filter: blur(20px);
   padding: 2rem;
   transform: translateY(-100%);
@@ -314,7 +286,6 @@ nav.scrolled {
   z-index: 999;
   border-bottom: 1px solid var(--border-subtle);
 }
-[data-theme="light"] .mobile-menu { background: rgba(250,248,244,0.97); }
 .mobile-menu.open { transform: translateY(0); opacity: 1; }
 .mobile-menu a {
   display: block;
@@ -363,7 +334,6 @@ nav.scrolled {
   border: 1px solid rgba(255,255,255,0.2);
   transition: all 0.3s ease;
 }
-[data-theme="light"] .btn-outline { border-color: rgba(0,0,0,0.2); }
 .btn-outline:hover {
   border-color: var(--gold);
   color: var(--gold);
@@ -459,12 +429,11 @@ section { padding: 100px 2rem; }
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse at 70% 50%, rgba(74,124,89,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 50%),
-    linear-gradient(160deg, #0a0a0a 0%, #121212 50%, #0f1210 100%);
+    radial-gradient(ellipse at 70% 50%, rgba(61,122,82,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(90,170,114,0.07) 0%, transparent 50%),
+    linear-gradient(160deg, #0e1610 0%, #111a14 50%, #0d1510 100%);
   z-index: 0;
 }
-[data-theme="light"] .hero-bg {
   background:
     radial-gradient(ellipse at 70% 50%, rgba(74,124,89,0.07) 0%, transparent 60%),
     radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
@@ -579,7 +548,6 @@ section { padding: 100px 2rem; }
   -webkit-text-stroke: 1px var(--text-primary);
   color: transparent;
 }
-[data-theme="light"] .hero-headline .line2 { -webkit-text-stroke: 1px var(--text-primary); }
 .hero-sub {
   font-size: 1.05rem;
   color: var(--text-secondary);
@@ -1243,11 +1211,10 @@ section { padding: 100px 2rem; }
 ============================================ */
 #stats {
   padding: 80px 2rem;
-  background: linear-gradient(135deg, #0f1a12, #12130d);
+  background: linear-gradient(135deg, #0c1710, #111a0f);
   position: relative;
   overflow: hidden;
 }
-[data-theme="light"] #stats {
   background: linear-gradient(135deg, #e8f2ec, #f5f0e0);
 }
 #stats::before {
@@ -2152,10 +2119,9 @@ footer {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  opacity: 0.04;
+  opacity: 0.05;
   z-index: 0;
 }
-[data-theme="light"] .hero-bg-img { opacity: 0.03; }
 
 /* ============================================
    ABOUT IMAGES WITH REAL PHOTOS
@@ -2180,7 +2146,6 @@ footer {
   border-radius: var(--radius-lg);
   filter: grayscale(0.6) invert(0);
 }
-[data-theme="dark"] .map-iframe-wrap iframe {
   filter: grayscale(0.5) invert(0.9) hue-rotate(180deg);
 }
 
@@ -2536,7 +2501,7 @@ footer {
   min-height: 180px;
   overflow: hidden;
 }
-.hc-visual.gold { background: linear-gradient(135deg, #b8860b, #d4a017, #f0c040, #c9a84c, #8b6914); }
+.hc-visual.gold { background: linear-gradient(135deg, #5a8a3c, #7ab050, #9acc6a, #7ab050, #4a7a2c); }
 .hc-visual.silver { background: linear-gradient(135deg, #555, #888, #aaa, #777, #444); }
 .hc-visual.green { background: linear-gradient(135deg, #1a4a1a, #2d7a2d, #4aaa4a, #2d7a2d, #1a4a1a); }
 .hc-card-mock {
@@ -2717,8 +2682,6 @@ footer {
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-actions">
-      <button class="btn-theme" id="theme-toggle" aria-label="Toggle theme">☽</button>
-      <div class="nav-actions-divider"></div>
       <a href="#contact" class="btn-nav">Book Consultation</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -2770,7 +2733,7 @@ footer {
       <span class="line2">Live Wholly</span>
     </h1>
     <p class="hero-sub">
-      Experience authentic Kerala Ayurveda in its purest form — where ancient wisdom meets modern comfort, and every treatment is a step toward lasting wellness.
+      Ancient Kerala Ayurveda. Modern comfort. Lasting wellness.
     </p>
     <div class="hero-ctas">
       <a href="#contact" class="btn-primary">Book a Consultation →</a>
@@ -2792,11 +2755,7 @@ footer {
         <span class="hero-stat-num">8000<span>+</span></span>
         <span class="hero-stat-label">Patients Healed</span>
       </div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat">
-        <span class="hero-stat-num">25<span>+</span></span>
-        <span class="hero-stat-label">Treatments Offered</span>
-      </div>
+
     </div>
   </div>
   <div class="hero-scroll-hint">
@@ -2810,23 +2769,19 @@ footer {
   <div class="trust-bar-inner">
     <div class="trust-item">
       <div class="trust-icon">🏥</div>
-      <div class="trust-text"><strong>AYUSH Registered</strong>Certified Ayurveda Hospital</div>
+      <div class="trust-text"><strong>AYUSH Certified</strong>Government Registered</div>
     </div>
     <div class="trust-item">
-      <div class="trust-icon">🌿</div>
-      <div class="trust-text"><strong>Authentic Kerala</strong>Classical Panchakarma</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">✈️</div>
-      <div class="trust-text"><strong>Medical Tourism</strong>Airport Transfers Included</div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">💊</div>
-      <div class="trust-text"><strong>In-House Pharmacy</strong>Pure Herbal Formulations</div>
+      <div class="trust-icon">⭐</div>
+      <div class="trust-text"><strong>15+ Years</strong>Trusted Excellence</div>
     </div>
     <div class="trust-item">
       <div class="trust-icon">🌍</div>
-      <div class="trust-text"><strong>40+ Countries</strong>International Patient Trust</div>
+      <div class="trust-text"><strong>40+ Countries</strong>International Patients</div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">✈️</div>
+      <div class="trust-text"><strong>Medical Tourism</strong>End-to-End Care</div>
     </div>
   </div>
 </div>
@@ -2856,9 +2811,7 @@ footer {
         <p class="section-subtitle">
           Eden Ayurveda Hospital is a premier Ayurvedic healing centre with roots in Walayar, Palakkad — the gateway to Kerala — with branches in Palakkad Town and Alapuzha. For over 15 years, we have been restoring health and vitality through the time-honoured science of Ayurveda, guided by classical texts and delivered by expert physicians.
         </p>
-        <p style="font-size:0.88rem; color:var(--text-secondary); margin-top:1rem; line-height:1.8;">
-          Our hospital combines the profound healing traditions of Kerala Ayurveda with world-class patient care, making us a preferred destination for international wellness travelers, medical tourists, and those seeking lasting relief from chronic conditions. Every treatment protocol is personally designed by our senior physicians using the finest organic herbs, medicated oils, and authentic Panchakarma procedures.
-        </p>
+
         <div class="about-features">
           <div class="about-feature">
             <div class="about-feature-icon">🌿</div>
@@ -2924,7 +2877,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Vamana Therapy</h3>
-          <p class="treatment-card-desc">A medicated emesis procedure that expels Kapha dosha toxins, prescribed for respiratory disorders, skin diseases, and chronic sinusitis.</p>
+          <p class="treatment-card-desc">Expels Kapha toxins. Effective for respiratory disorders, skin conditions and sinusitis.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 7–14 Days Program</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -2938,7 +2891,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Virechana</h3>
-          <p class="treatment-card-desc">Therapeutic purgation that eliminates Pitta toxins from the body. Highly effective for skin disorders, digestive issues, and metabolic conditions.</p>
+          <p class="treatment-card-desc">Eliminates Pitta toxins. Effective for skin disorders, digestive and metabolic conditions.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 7–21 Days</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -2952,7 +2905,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Basti (Vasti)</h3>
-          <p class="treatment-card-desc">The most powerful of the Panchakarma procedures — medicated enema therapy that pacifies Vata disorders, including arthritis, paralysis, and lower back pain.</p>
+          <p class="treatment-card-desc">Medicated enema therapy — the most powerful Panchakarma. Relieves arthritis, paralysis and back pain.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 8–30 Days</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -2967,7 +2920,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Shirodhara</h3>
-          <p class="treatment-card-desc">A continuous stream of warm medicated oil poured on the forehead — the most deeply relaxing treatment in Ayurveda. Relieves stress, anxiety, insomnia, and neurological disorders.</p>
+          <p class="treatment-card-desc">Warm medicated oil flows continuously on the forehead. Deeply relieves stress, insomnia and neurological conditions.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 45–60 Minutes</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -2981,7 +2934,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Abhyanga</h3>
-          <p class="treatment-card-desc">A full-body synchronized massage using warm herbal oils performed by two therapists. Deeply nourishes tissues, improves circulation, and induces profound relaxation.</p>
+          <p class="treatment-card-desc">Synchronised full-body herbal oil massage. Nourishes tissues, improves circulation and induces deep relaxation.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 60–90 Minutes</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -2995,7 +2948,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Rasayana Chikitsa</h3>
-          <p class="treatment-card-desc">The Ayurvedic science of rejuvenation — a specialized program using rare herbs and preparations to restore youth, vitality, immunity, and cognitive function.</p>
+          <p class="treatment-card-desc">Rare herbs and classical preparations that restore vitality, immunity and cognitive clarity.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 14–28 Days</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -3010,7 +2963,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Nasya</h3>
-          <p class="treatment-card-desc">Administration of medicated oils and herbal powders through the nasal cavity. Highly effective for sinusitis, migraines, neurological conditions, and ENT disorders.</p>
+          <p class="treatment-card-desc">Medicated oils via the nasal passage. Effective for sinusitis, migraines and ENT disorders.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 30–45 Minutes</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -3024,7 +2977,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Kati Basti</h3>
-          <p class="treatment-card-desc">A specialized treatment for lower back conditions — warm medicated oil is pooled on the lumbar region using a dough frame. Relieves disc prolapse, sciatica, and spondylitis.</p>
+          <p class="treatment-card-desc">Warm oil pooled on the lumbar region. Relieves disc prolapse, sciatica and spondylitis.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 45 Minutes</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -3038,7 +2991,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Netra Tarpana</h3>
-          <p class="treatment-card-desc">Eye rejuvenation therapy using warm clarified ghee pooled around the eyes. Treats eye strain, dry eyes, early cataract, and improves vision and clarity.</p>
+          <p class="treatment-card-desc">Warm ghee pooled around the eyes. Treats eye strain, dryness and early cataract.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 30 Minutes</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -3053,7 +3006,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Yoga & Meditation</h3>
-          <p class="treatment-card-desc">Daily personalized yoga and meditation sessions integrated with your treatment program for complete mind-body balance and accelerated healing.</p>
+          <p class="treatment-card-desc">Personalised daily yoga and meditation integrated with your treatment program.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 60 Minutes Daily</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -3067,7 +3020,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Udvartana</h3>
-          <p class="treatment-card-desc">A vigorous herbal powder massage that stimulates lymphatic drainage, reduces cellulite, tones the skin, and promotes weight management.</p>
+          <p class="treatment-card-desc">Herbal powder massage that stimulates lymphatic drainage and promotes weight management.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 45–60 Minutes</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -3081,7 +3034,7 @@ footer {
         </div>
         <div class="treatment-card-body">
           <h3 class="treatment-card-name">Pizhichil</h3>
-          <p class="treatment-card-desc">Continuous pouring of warm medicated oil over the entire body by trained therapists. The royal Kerala treatment for paralysis, arthritis, and nervous disorders.</p>
+          <p class="treatment-card-desc">The royal Kerala therapy — continuous warm oil poured over the body. Treats paralysis and nervous disorders.</p>
           <div class="treatment-card-meta">
             <span class="treatment-duration">⏱ 60–90 Minutes</span>
             <a href="#contact" class="treatment-link">Enquire →</a>
@@ -3115,219 +3068,6 @@ footer {
     </div>
   </div>
 </section>
-
-<!-- ============ CONDITIONS TREATED ============ -->
-<section id="conditions">
-  <div class="container">
-    <div style="text-align:center; max-width:640px; margin:0 auto 1rem;">
-      <div class="section-label reveal" style="justify-content:center;">What We Heal</div>
-      <h2 class="section-title reveal">Conditions <em>Effectively Treated</em><br>Through Ayurveda</h2>
-      <p class="section-subtitle reveal" style="margin:0 auto;">Our physicians have successfully treated thousands of patients across a wide spectrum of chronic and lifestyle-related conditions using classical Ayurvedic protocols.</p>
-    </div>
-    <div class="conditions-grid">
-      <div class="condition-group reveal">
-        <div class="condition-group-icon">🦴</div>
-        <div class="condition-group-title">Musculoskeletal & Joint</div>
-        <div class="condition-list">
-          <div class="condition-item">Rheumatoid Arthritis</div>
-          <div class="condition-item">Osteoarthritis</div>
-          <div class="condition-item">Ankylosing Spondylitis</div>
-          <div class="condition-item">Disc Prolapse / Slip Disc</div>
-          <div class="condition-item">Sciatica & Low Back Pain</div>
-          <div class="condition-item">Cervical Spondylosis</div>
-          <div class="condition-item">Frozen Shoulder</div>
-          <div class="condition-item">Gout</div>
-        </div>
-      </div>
-      <div class="condition-group reveal">
-        <div class="condition-group-icon">🧠</div>
-        <div class="condition-group-title">Neurological</div>
-        <div class="condition-list">
-          <div class="condition-item">Parkinson's Disease</div>
-          <div class="condition-item">Paralysis / Hemiplegia</div>
-          <div class="condition-item">Multiple Sclerosis</div>
-          <div class="condition-item">Migraine & Chronic Headache</div>
-          <div class="condition-item">Peripheral Neuropathy</div>
-          <div class="condition-item">Epilepsy (adjunct therapy)</div>
-          <div class="condition-item">Alzheimer's Support</div>
-          <div class="condition-item">Stress & Anxiety</div>
-        </div>
-      </div>
-      <div class="condition-group reveal">
-        <div class="condition-group-icon">🌿</div>
-        <div class="condition-group-title">Skin & Dermatology</div>
-        <div class="condition-list">
-          <div class="condition-item">Psoriasis</div>
-          <div class="condition-item">Eczema / Dermatitis</div>
-          <div class="condition-item">Vitiligo</div>
-          <div class="condition-item">Chronic Urticaria</div>
-          <div class="condition-item">Acne & Skin Disorders</div>
-          <div class="condition-item">Hair Loss (Alopecia)</div>
-          <div class="condition-item">Premature Ageing</div>
-        </div>
-      </div>
-      <div class="condition-group reveal">
-        <div class="condition-group-icon">💛</div>
-        <div class="condition-group-title">Digestive & Metabolic</div>
-        <div class="condition-list">
-          <div class="condition-item">Irritable Bowel Syndrome (IBS)</div>
-          <div class="condition-item">Ulcerative Colitis</div>
-          <div class="condition-item">Crohn's Disease</div>
-          <div class="condition-item">Chronic Constipation</div>
-          <div class="condition-item">Liver Disorders</div>
-          <div class="condition-item">Type 2 Diabetes Management</div>
-          <div class="condition-item">Obesity & Weight Management</div>
-          <div class="condition-item">Thyroid Disorders</div>
-        </div>
-      </div>
-      <div class="condition-group reveal">
-        <div class="condition-group-icon">🌸</div>
-        <div class="condition-group-title">Women's Health</div>
-        <div class="condition-list">
-          <div class="condition-item">PCOD / PCOS</div>
-          <div class="condition-item">Female Infertility</div>
-          <div class="condition-item">Menstrual Disorders</div>
-          <div class="condition-item">Menopause Symptoms</div>
-          <div class="condition-item">Post-natal Care (Sootika)</div>
-          <div class="condition-item">Uterine Fibroids</div>
-          <div class="condition-item">Leucorrhoea</div>
-        </div>
-      </div>
-      <div class="condition-group reveal">
-        <div class="condition-group-icon">💨</div>
-        <div class="condition-group-title">Respiratory & ENT</div>
-        <div class="condition-list">
-          <div class="condition-item">Bronchial Asthma</div>
-          <div class="condition-item">Chronic Sinusitis</div>
-          <div class="condition-item">Allergic Rhinitis</div>
-          <div class="condition-item">Tinnitus</div>
-          <div class="condition-item">Recurrent Respiratory Infections</div>
-          <div class="condition-item">Chronic Fatigue Syndrome</div>
-          <div class="condition-item">Insomnia & Sleep Disorders</div>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:3rem;" class="reveal">
-      <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.5rem;">Don't see your condition? Our physicians treat many more conditions. Reach out for a personalized assessment.</p>
-      <a href="#contact" class="btn-primary">Discuss Your Condition →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHY CHOOSE US ============ -->
-<section id="why-us">
-  <div class="container">
-    <div class="why-grid">
-      <div>
-        <div class="section-label reveal">Why Eden Ayurveda</div>
-        <h2 class="section-title reveal">Not All Ayurveda<br><em>Is Created Equal</em></h2>
-        <div class="divider reveal"></div>
-        <p class="section-subtitle reveal">Eden Ayurveda Hospital maintains the highest standards of classical Ayurvedic practice — where every procedure is authentic, every physician is formally trained, and every patient receives genuinely individualized care.</p>
-        <div class="why-features">
-          <div class="why-feature reveal">
-            <div class="why-feature-icon">🔬</div>
-            <div class="why-feature-content">
-              <h4>Physician-Led, Not Therapist-Led</h4>
-              <p>Every treatment program is prescribed and supervised by a qualified BAMS or MD Ayurveda physician — not delegated to therapists without medical oversight.</p>
-            </div>
-          </div>
-          <div class="why-feature reveal">
-            <div class="why-feature-icon">🌿</div>
-            <div class="why-feature-content">
-              <h4>Authentic Classical Protocols</h4>
-              <p>We follow the original Panchakarma procedures as documented in Charaka Samhita and Ashtanga Hridayam — including proper Poorvakarma preparation and Paschatkarma follow-up.</p>
-            </div>
-          </div>
-          <div class="why-feature reveal">
-            <div class="why-feature-icon">💊</div>
-            <div class="why-feature-content">
-              <h4>In-House Herbal Pharmacy</h4>
-              <p>Medicines are freshly prepared on-site using certified organic herbs, ensuring maximum potency, purity, and authenticity — free from heavy metals and adulterants.</p>
-            </div>
-          </div>
-          <div class="why-feature reveal">
-            <div class="why-feature-icon">🌍</div>
-            <div class="why-feature-content">
-              <h4>Dedicated International Services</h4>
-              <p>A full international patient support team handles visa letters, airport logistics, translation, dietary preferences, and ongoing post-departure follow-up care.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal-right">
-        <div class="why-comparison-table">
-          <div class="comparison-header">
-            <span class="comparison-col-label" style="color:var(--text-muted);">Feature</span>
-            <span class="comparison-col-label eden">Eden Ayurveda</span>
-            <span class="comparison-col-label others">Typical Others</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">Qualified MD/BAMS Physicians</span>
-            <span class="comparison-check check-yes">✓ Always</span>
-            <span class="comparison-check check-partial">Sometimes</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">Classical Panchakarma (full protocol)</span>
-            <span class="comparison-check check-yes">✓ Yes</span>
-            <span class="comparison-check check-no">Partial</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">Daily physician consultation</span>
-            <span class="comparison-check check-yes">✓ Every day</span>
-            <span class="comparison-check check-partial">Varies</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">In-house herbal pharmacy</span>
-            <span class="comparison-check check-yes">✓ Yes</span>
-            <span class="comparison-check check-no">Rarely</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">International visa letter</span>
-            <span class="comparison-check check-yes">✓ Provided</span>
-            <span class="comparison-check check-no">Often not</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">Airport transfers included</span>
-            <span class="comparison-check check-yes">✓ Complimentary</span>
-            <span class="comparison-check check-partial">Extra cost</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">Post-discharge telemedicine</span>
-            <span class="comparison-check check-yes">✓ 3 months</span>
-            <span class="comparison-check check-no">Rarely</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">Ayurvedic diet & meals</span>
-            <span class="comparison-check check-yes">✓ Included</span>
-            <span class="comparison-check check-partial">Sometimes</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">Yoga & meditation program</span>
-            <span class="comparison-check check-yes">✓ Daily</span>
-            <span class="comparison-check check-partial">Optional</span>
-          </div>
-          <div class="comparison-row">
-            <span class="comparison-feature-name">English-speaking coordinators</span>
-            <span class="comparison-check check-yes">✓ Dedicated</span>
-            <span class="comparison-check check-partial">Limited</span>
-          </div>
-        </div>
-        <div style="text-align:center; margin-top:1.5rem;" class="reveal">
-          <a href="#contact" class="btn-primary">Book a Free Consultation →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ RECOGNITION STRIP ============ -->
-<div id="recognition">
-  <div class="recognition-inner">
-    <span class="recognition-title">Trusted &amp; Recognised By</span>
-    <div class="recognition-items">
-      <div class="recognition-item">
-        <span class="recognition-icon">🏛️</span>
-        <div class="recognition-text"><strong>Ministry of AYUSH</strong>Government of India</div>
       </div>
       <div class="recognition-item">
         <span class="recognition-icon">⭐</span>
@@ -3585,18 +3325,6 @@ footer {
         <div class="timeline-dot">17</div>
         <div class="timeline-step-title">Yoga & Rest</div>
         <div class="timeline-step-desc">Evening yoga, meditation, and the deep rest your body needs to heal and integrate the day's treatments.</div>
-      </div>
-    </div>
-  </div>
-  <div class="wellness-cta-section">
-    <div class="wellness-cta-bg"></div>
-    <div style="position:relative;z-index:1;">
-      <div class="section-label reveal" style="justify-content:center;">Begin Your Journey</div>
-      <h2 class="section-title reveal" style="text-align:center;">Ready to Experience<br><em>True Healing?</em></h2>
-      <p class="section-subtitle reveal" style="margin:0 auto 2.5rem; text-align:center;">Whether you seek relief from a chronic condition, wish to detoxify, or simply want to experience the transformative power of Ayurveda — we're here to guide you.</p>
-      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;" class="reveal">
-        <a href="#contact" class="btn-primary">Book Your Consultation →</a>
-        <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%20Hospital%2C%20I%20would%20like%20to%20enquire%20about%20your%20treatments%20and%20international%20patient%20programs." target="_blank" class="btn-green">💬 WhatsApp Us</a>
       </div>
     </div>
   </div>
@@ -3919,7 +3647,7 @@ footer {
         <div class="section-label reveal">FAQ</div>
         <h2 class="section-title reveal">Everything You<br><em>Need to Know</em></h2>
         <div class="divider reveal"></div>
-        <p class="section-subtitle reveal">Have more questions? Our patient coordinators are available to answer any query via WhatsApp, email, or phone.</p>
+        <p class="section-subtitle reveal">Have more questions? Reach us via WhatsApp, email, or phone.</p>
         <div style="margin-top:2rem;" class="reveal">
           <a href="#contact" class="btn-primary">Ask a Question →</a>
         </div>
@@ -4051,7 +3779,7 @@ footer {
         <div class="blog-body">
           <div class="blog-tag">Panchakarma</div>
           <h3 class="blog-title">The Complete Guide to Panchakarma: What to Expect During Your Detox Retreat</h3>
-          <p class="blog-excerpt">Everything international patients need to know before embarking on a classical Kerala Panchakarma program — from preparation to post-treatment care.</p>
+          <p class="blog-excerpt">What to expect before, during and after a classical Kerala Panchakarma program.</p>
           <div class="blog-meta">
             <span>Dr. Chief Vaidya</span>
             <span class="blog-meta-dot"></span>
@@ -4066,7 +3794,7 @@ footer {
         <div class="blog-body">
           <div class="blog-tag">Shirodhara</div>
           <h3 class="blog-title">Shirodhara: Ancient Science Behind the World's Most Relaxing Treatment</h3>
-          <p class="blog-excerpt">How warm medicated oil poured on the forehead activates the nervous system's rest response and why it's unlike any therapy in modern medicine.</p>
+          <p class="blog-excerpt">The neuroscience behind Ayurveda's most deeply relaxing therapy.</p>
           <div class="blog-meta">
             <span>Dr. Wellness Consultant</span>
             <span class="blog-meta-dot"></span>
@@ -4081,7 +3809,7 @@ footer {
         <div class="blog-body">
           <div class="blog-tag">Arthritis</div>
           <h3 class="blog-title">How Ayurveda Addresses Rheumatoid Arthritis Beyond Symptom Management</h3>
-          <p class="blog-excerpt">A clinical perspective on Vata-origin joint disorders and the classical Basti treatments that reach the root of musculoskeletal disease.</p>
+          <p class="blog-excerpt">How classical Basti therapy addresses arthritis at its root — not just the symptoms.</p>
           <div class="blog-meta">
             <span>Dr. Senior Physician</span>
             <span class="blog-meta-dot"></span>
@@ -4356,17 +4084,6 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
-
-// ============================================
-// THEME TOGGLE
-// ============================================
-const themeToggle = document.getElementById('theme-toggle');
-let isDark = true;
-themeToggle.addEventListener('click', () => {
-  isDark = !isDark;
-  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  themeToggle.textContent = isDark ? '☽' : '☀';
-});
 
 // ============================================
 // HAMBURGER MENU
