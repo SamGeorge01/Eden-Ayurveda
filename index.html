@@ -196,18 +196,22 @@ nav.scrolled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 76px;
+  gap: 1rem;
 }
 .nav-logo {
   display: flex; flex-direction: column;
+  flex-shrink: 0;
+  min-width: 0;
 }
 .nav-logo-name {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 500;
   color: var(--gold);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   line-height: 1;
+  white-space: nowrap;
 }
 .nav-logo-tag {
   font-size: 0.6rem;
@@ -219,8 +223,10 @@ nav.scrolled {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2.2rem;
-  margin-right: 1rem;
+  gap: 1.8rem;
+  flex: 1;
+  justify-content: center;
+  overflow: hidden;
 }
 .nav-links a {
   font-size: 0.78rem;
@@ -241,7 +247,9 @@ nav.scrolled {
 .nav-links a:hover { color: var(--gold); }
 .nav-links a:hover::after { width: 100%; }
 .nav-actions {
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; align-items: center; gap: 0.75rem;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 .btn-nav {
   padding: 0.55rem 1.4rem;
@@ -457,49 +465,67 @@ section { padding: 100px 2rem; }
   90% { opacity: 0.6; }
   50% { transform: translateY(-80px) translateX(20px); }
 }
-.hero-ornament {
+/* Hero visual panel */
+.hero-visual {
   position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: min(500px, 45vw);
-  height: min(500px, 45vw);
+  right: 0; top: 0; bottom: 0;
+  width: 45%;
   z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
 }
-.hero-ornament-ring {
+.hero-visual-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.18;
+}
+.hero-visual-overlay {
   position: absolute; inset: 0;
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  animation: rotateSlow 30s linear infinite;
+  background: linear-gradient(to right, var(--bg-primary) 0%, transparent 40%),
+              linear-gradient(to top, var(--bg-primary) 0%, transparent 30%);
 }
-.hero-ornament-ring:nth-child(2) {
-  inset: 15%;
-  border-style: dashed;
-  animation-direction: reverse;
-  animation-duration: 20s;
-}
-.hero-ornament-ring:nth-child(3) {
-  inset: 30%;
-  border-color: rgba(74,124,89,0.2);
-  animation-duration: 15s;
-}
-.hero-ornament-center {
+.hero-visual-card {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: 40%;
-  height: 40%;
-  background: radial-gradient(circle, rgba(201,168,76,0.1), transparent);
-  border-radius: 50%;
-  border: 1px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
+  bottom: 12%;
+  right: 8%;
+  width: min(220px, 35vw);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.6rem;
+  backdrop-filter: blur(12px);
+  animation: fadeUp 1s ease 1.2s both;
 }
-.hero-ornament-symbol {
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+.hero-visual-card-num {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
   color: var(--gold);
-  opacity: 0.7;
+  line-height: 1;
 }
-@keyframes rotateSlow { to { transform: rotate(360deg); } }
+.hero-visual-card-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+.hero-botanical {
+  position: absolute;
+  top: 15%; right: 6%;
+  width: min(320px, 38vw);
+  height: min(320px, 38vw);
+  animation: fadeUp 1s ease 0.8s both;
+}
+@media (max-width: 900px) {
+  .hero-visual { width: 100%; opacity: 0.4; }
+  .hero-visual-img { opacity: 0.08; }
+  .hero-visual-card { display: none; }
+  .hero-botanical { width: min(200px, 50vw); height: min(200px, 50vw); top: 10%; right: 2%; opacity: 0.3; }
+}
+@media (max-width: 600px) {
+  .hero-botanical { display: none; }
+}
 
 .hero-content {
   position: relative; z-index: 2;
@@ -588,27 +614,6 @@ section { padding: 100px 2rem; }
   width: 1px; height: 40px;
   background: var(--border);
 }
-.hero-scroll-hint {
-  position: absolute;
-  bottom: 2rem; left: 50%;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-  z-index: 2;
-  animation: fadeUp 1s ease 1.5s both;
-}
-.hero-scroll-text {
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.hero-scroll-line {
-  width: 1px; height: 50px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-@keyframes scrollPulse {
-  0% { opacity: 1; transform: scaleY(1); transform-origin: top; }
   50% { opacity: 0.5; }
   100% { opacity: 1; transform: scaleY(1); }
 }
@@ -2648,6 +2653,17 @@ footer {
   .hc-content { padding: 1.5rem; border-left: none; border-top: 1px solid var(--border-subtle); }
   .hc-name { font-size: 1.4rem; }
 }
+
+@media (max-width: 768px) {
+  .nav-inner { height: 64px; padding: 0 1.2rem; }
+  .nav-logo-tag { display: none; }
+  .nav-logo-name { font-size: 1.2rem; }
+  .btn-nav { display: none !important; }
+  .nav-links { display: none !important; }
+  .nav-actions { margin-left: auto; gap: 0.5rem; }
+  .hamburger { display: flex; }
+  nav.scrolled { padding: 0 1.2rem; }
+}
 </style>
 </head>
 <body>
@@ -2708,22 +2724,36 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-bg-img"></div>
   <div class="hero-particles" id="particles"></div>
-  <div class="hero-ornament">
-    <div class="hero-ornament-ring"></div>
-    <div class="hero-ornament-ring"></div>
-    <div class="hero-ornament-ring"></div>
-    <div class="hero-ornament-center">
-      <svg width="42" height="42" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.7">
-        <ellipse cx="50" cy="72" rx="18" ry="6" fill="none" stroke="#c9a84c" stroke-width="2"/>
-        <path d="M50 68 C50 68 20 52 20 30 C20 14 34 8 50 8 C66 8 80 14 80 30 C80 52 50 68 50 68Z" fill="none" stroke="#c9a84c" stroke-width="2"/>
-        <path d="M50 68 C50 68 32 48 35 28 C38 14 50 8 50 8" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="3,3"/>
-        <path d="M50 68 C50 68 68 48 65 28 C62 14 50 8 50 8" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="3,3"/>
-        <line x1="50" y1="8" x2="50" y2="78" stroke="#c9a84c" stroke-width="1.5"/>
-        <circle cx="50" cy="82" r="3" fill="#c9a84c" opacity="0.6"/>
-      </svg>
+  <div class="hero-visual">
+    <img class="hero-visual-img" src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=60" alt="Ayurveda healing">
+    <div class="hero-visual-overlay"></div>
+    <svg class="hero-botanical" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Main stem -->
+      <path d="M150 280 C150 280 148 200 145 160 C142 120 135 90 130 60" stroke="#a8c5a0" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <!-- Left large leaf -->
+      <path d="M145 160 C145 160 100 155 75 130 C55 110 50 80 65 65 C80 50 110 60 125 85 C140 110 145 160 145 160Z" fill="rgba(168,197,160,0.08)" stroke="#a8c5a0" stroke-width="1.2" stroke-linejoin="round" opacity="0.7"/>
+      <path d="M145 160 C130 145 105 120 65 65" stroke="#a8c5a0" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.4"/>
+      <!-- Right large leaf -->
+      <path d="M148 140 C148 140 195 132 218 105 C238 82 238 52 222 40 C206 28 178 40 167 67 C155 94 148 140 148 140Z" fill="rgba(168,197,160,0.08)" stroke="#a8c5a0" stroke-width="1.2" stroke-linejoin="round" opacity="0.7"/>
+      <path d="M148 140 C162 122 188 95 222 40" stroke="#a8c5a0" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.4"/>
+      <!-- Small upper left leaf -->
+      <path d="M140 100 C140 100 108 92 92 72 C80 57 82 40 94 35 C106 30 122 42 128 62 C134 82 140 100 140 100Z" fill="rgba(168,197,160,0.06)" stroke="#a8c5a0" stroke-width="1" opacity="0.6"/>
+      <!-- Small upper right leaf -->
+      <path d="M143 80 C143 80 170 68 182 48 C192 32 188 18 178 14 C168 10 155 20 150 38 C145 56 143 80 143 80Z" fill="rgba(168,197,160,0.06)" stroke="#a8c5a0" stroke-width="1" opacity="0.6"/>
+      <!-- Flower/seed circles -->
+      <circle cx="130" cy="58" r="5" fill="none" stroke="#a8c5a0" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="130" cy="58" r="2" fill="#a8c5a0" opacity="0.3"/>
+      <!-- Dots -->
+      <circle cx="105" cy="145" r="2" fill="#a8c5a0" opacity="0.25"/>
+      <circle cx="190" cy="115" r="2" fill="#a8c5a0" opacity="0.25"/>
+      <circle cx="88" cy="78" r="1.5" fill="#a8c5a0" opacity="0.2"/>
+    </svg>
+    <div class="hero-visual-card">
+      <div class="hero-visual-card-num">15+</div>
+      <div class="hero-visual-card-label">Years of authentic<br>Ayurvedic healing</div>
     </div>
   </div>
-  <div class="hero-content">
+  <div class="hero-content">  <div class="hero-content">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
       Accepting International Patients — Kerala, India
@@ -2747,8 +2777,8 @@ footer {
       </div>
       <div class="hero-stat-divider"></div>
       <div class="hero-stat">
-        <span class="hero-stat-num">40<span>+</span></span>
-        <span class="hero-stat-label">Countries Served</span>
+        <span class="hero-stat-num">3</span>
+        <span class="hero-stat-label">Hospital Locations</span>
       </div>
       <div class="hero-stat-divider"></div>
       <div class="hero-stat">
@@ -2758,10 +2788,7 @@ footer {
 
     </div>
   </div>
-  <div class="hero-scroll-hint">
-    <span class="hero-scroll-text">Scroll</span>
-    <div class="hero-scroll-line"></div>
-  </div>
+</div>
 </section>
 
 <!-- ============ TRUST BAR ============ -->
@@ -2777,7 +2804,7 @@ footer {
     </div>
     <div class="trust-item">
       <div class="trust-icon">🌍</div>
-      <div class="trust-text"><strong>40+ Countries</strong>International Patients</div>
+      <div class="trust-text"><strong>3 Locations</strong>Palakkad · Valayar · Alapuzha</div>
     </div>
     <div class="trust-item">
       <div class="trust-icon">✈️</div>
@@ -2986,7 +3013,7 @@ footer {
       </div>
       <div class="treatment-card reveal" data-category="therapeutic">
         <div class="treatment-card-img">
-          <img src="https://images.unsplash.com/photo-1595854341625-f33ee10dbf9f?auto=format&fit=crop&w=600&q=75" alt="Netra Tarpana eye rejuvenation" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=75" alt="Netra Tarpana eye rejuvenation" loading="lazy">
           <span class="treatment-card-tag">Therapeutic</span>
         </div>
         <div class="treatment-card-body">
@@ -3054,8 +3081,8 @@ footer {
         <div class="stat-label">Patients Healed</div>
       </div>
       <div class="stat-item reveal">
-        <div class="stat-number" data-target="40">0</div>
-        <div class="stat-label">Countries Served</div>
+        <div class="stat-number" data-target="3">0</div>
+        <div class="stat-label">Hospital Locations</div>
       </div>
       <div class="stat-item reveal">
         <div class="stat-number" data-target="25">0</div>
