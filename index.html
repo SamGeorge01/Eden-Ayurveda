@@ -232,7 +232,8 @@ nav.scrolled {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 2.2rem;
+  margin-right: 1rem;
 }
 .nav-links a {
   font-size: 0.78rem;
@@ -254,6 +255,11 @@ nav.scrolled {
 .nav-links a:hover::after { width: 100%; }
 .nav-actions {
   display: flex; align-items: center; gap: 1rem;
+}
+.nav-actions-divider {
+  width: 1px; height: 22px;
+  background: var(--border-subtle);
+  margin: 0 0.25rem;
 }
 .btn-nav {
   padding: 0.55rem 1.4rem;
@@ -2705,13 +2711,14 @@ footer {
       <a href="#treatments">Treatments</a>
       <a href="#medical-tourism">Medical Tourism</a>
       <a href="#doctors">Doctors</a>
-      <a href="#packages">Packages</a>
       <a href="#health-cards">Health Cards</a>
+      <a href="#packages">Packages</a>
       <a href="#blog">Blog</a>
       <a href="#contact">Contact</a>
     </div>
     <div class="nav-actions">
       <button class="btn-theme" id="theme-toggle" aria-label="Toggle theme">☽</button>
+      <div class="nav-actions-divider"></div>
       <a href="#contact" class="btn-nav">Book Consultation</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -2726,8 +2733,8 @@ footer {
   <a href="#treatments" onclick="closeMobile()">Treatments</a>
   <a href="#medical-tourism" onclick="closeMobile()">Medical Tourism</a>
   <a href="#doctors" onclick="closeMobile()">Doctors</a>
-  <a href="#packages" onclick="closeMobile()">Packages</a>
   <a href="#health-cards" onclick="closeMobile()">Health Cards</a>
+  <a href="#packages" onclick="closeMobile()">Packages</a>
   <a href="#blog" onclick="closeMobile()">Blog</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
   <a href="#contact" class="btn-primary" onclick="closeMobile()">Book Consultation →</a>
@@ -3693,6 +3700,130 @@ footer {
   </div>
 </section>
 
+<!-- ============ FAMILY HEALTH CARDS ============ -->
+<section id="health-cards">
+  <div class="container">
+    <div style="text-align:center; max-width:620px; margin:0 auto 1rem;">
+      <div class="section-label reveal" style="justify-content:center;">Membership Program</div>
+      <h2 class="section-title reveal">Eden Family<br><em>Health Card Program</em></h2>
+      <p class="section-subtitle reveal" style="margin:0 auto;">Annual membership cards that bring the healing power of Ayurveda to your entire family — with priority access, therapy sessions, and exclusive benefits across all our branches.</p>
+    </div>
+    <div class="health-cards-grid">
+
+      <!-- GOLD -->
+      <div class="health-card-row reveal">
+        <div class="hc-visual gold">
+          <div class="hc-card-mock">
+            <div class="hc-card-logo">Eden Ayurveda Hospital</div>
+            <div class="hc-card-subtitle">HO: Kannalpirivu, Walayar, Palakkad – 676 824</div>
+            <div><span class="hc-card-label gold-label">Ayurveda Family Health Card</span></div>
+            <div class="hc-card-number">4000 &nbsp; 7364 &nbsp; 554 &nbsp; 0101</div>
+            <div class="hc-card-validity">
+              <span>Valid From<br><strong>01/01/26</strong></span>
+              <span>Valid Up to<br><strong>01/01/28</strong></span>
+            </div>
+            <div class="hc-card-tier-badge">GOLD</div>
+          </div>
+        </div>
+        <div class="hc-content">
+          <div class="hc-tier-tag gold-tag"><span class="hc-tier-dot gold-dot"></span> Premium Tier</div>
+          <div class="hc-name">Gold Family Health Card</div>
+          <div class="hc-price">₹1,00,000</div>
+          <div class="hc-sessions">Includes 100 therapy sessions · Valid 2 Years</div>
+          <p class="hc-desc">Ideal for families requiring extensive Ayurvedic care throughout the year. This premium plan ensures priority appointments, the widest range of therapies, and full access across all Eden branches — covering every member of your family with the highest standard of classical Ayurvedic treatment.</p>
+          <div class="hc-perks">
+            <span class="hc-perk">100 Therapy Sessions</span>
+            <span class="hc-perk">Priority Booking</span>
+            <span class="hc-perk">All Branches</span>
+            <span class="hc-perk">Family Coverage</span>
+            <span class="hc-perk">2-Year Validity</span>
+            <span class="hc-perk">Free Consultations</span>
+          </div>
+          <div class="hc-actions">
+            <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%2C%20I%20am%20interested%20in%20the%20Gold%20Family%20Health%20Card%20program." target="_blank" class="btn-primary">Enquire on WhatsApp →</a>
+            <a href="#contact" class="btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SILVER -->
+      <div class="health-card-row reveal">
+        <div class="hc-visual silver">
+          <div class="hc-card-mock">
+            <div class="hc-card-logo">Eden Ayurveda Hospital</div>
+            <div class="hc-card-subtitle">HO: Kannalpirivu, Walayar, Palakkad – 676 824</div>
+            <div><span class="hc-card-label silver-label">Ayurveda Family Health Card</span></div>
+            <div class="hc-card-number">4000 &nbsp; 7364 &nbsp; 554 &nbsp; 0101</div>
+            <div class="hc-card-validity">
+              <span>Valid From<br><strong>01/01/26</strong></span>
+              <span>Valid Up to<br><strong>01/01/28</strong></span>
+            </div>
+            <div class="hc-card-tier-badge">SILVER</div>
+          </div>
+        </div>
+        <div class="hc-content">
+          <div class="hc-tier-tag silver-tag"><span class="hc-tier-dot silver-dot"></span> Classic Tier</div>
+          <div class="hc-name">Silver Family Health Card</div>
+          <div class="hc-price">₹50,000</div>
+          <div class="hc-sessions">Includes 40 therapy sessions · Valid 2 Years</div>
+          <p class="hc-desc">Best suited for moderate healthcare needs, offering flexibility and affordability for individuals or families. Covers a broad range of Ayurvedic therapies across our branches, giving you reliable, quality Ayurvedic care whenever you need it throughout the year.</p>
+          <div class="hc-perks">
+            <span class="hc-perk">40 Therapy Sessions</span>
+            <span class="hc-perk">Flexible Booking</span>
+            <span class="hc-perk">All Branches</span>
+            <span class="hc-perk">Family Coverage</span>
+            <span class="hc-perk">2-Year Validity</span>
+          </div>
+          <div class="hc-actions">
+            <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%2C%20I%20am%20interested%20in%20the%20Silver%20Family%20Health%20Card%20program." target="_blank" class="btn-primary">Enquire on WhatsApp →</a>
+            <a href="#contact" class="btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- GREEN / PREMIUM -->
+      <div class="health-card-row reveal">
+        <div class="hc-visual green">
+          <div class="hc-card-mock">
+            <div class="hc-card-logo">Eden Ayurveda Hospital</div>
+            <div class="hc-card-subtitle">HO: Kannalpirivu, Walayar, Palakkad – 676 824</div>
+            <div><span class="hc-card-label green-label">Ayurveda Family Health Card</span></div>
+            <div class="hc-card-number">4000 &nbsp; 7364 &nbsp; 554 &nbsp; 0101</div>
+            <div class="hc-card-validity">
+              <span>Valid From<br><strong>01/01/26</strong></span>
+              <span>Valid Up to<br><strong>01/01/28</strong></span>
+            </div>
+            <div class="hc-card-tier-badge">QUAL.</div>
+          </div>
+        </div>
+        <div class="hc-content">
+          <div class="hc-tier-tag green-tag"><span class="hc-tier-dot green-dot"></span> Starter Tier</div>
+          <div class="hc-name">Premium Family Health Card</div>
+          <div class="hc-price">₹30,000</div>
+          <div class="hc-sessions">Includes 18 therapy sessions · Valid 2 Years</div>
+          <p class="hc-desc">A budget-friendly option for preventive care, seasonal detox, and early health management — providing your family with regular access to authentic Ayurvedic therapies. The ideal starting point for families looking to embrace an Ayurvedic lifestyle without a large initial commitment.</p>
+          <div class="hc-perks">
+            <span class="hc-perk">18 Therapy Sessions</span>
+            <span class="hc-perk">Preventive Care</span>
+            <span class="hc-perk">Seasonal Detox</span>
+            <span class="hc-perk">Family Coverage</span>
+            <span class="hc-perk">2-Year Validity</span>
+          </div>
+          <div class="hc-actions">
+            <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%2C%20I%20am%20interested%20in%20the%20Premium%20Family%20Health%20Card%20program." target="_blank" class="btn-primary">Enquire on WhatsApp →</a>
+            <a href="#contact" class="btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;" class="reveal">
+      <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1rem;">Cards are valid across all Eden Ayurveda branches. Sessions can be shared among family members. Contact us for custom corporate wellness packages.</p>
+      <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%2C%20I%20would%20like%20to%20know%20more%20about%20the%20Family%20Health%20Card%20program." target="_blank" class="btn-green">💬 Chat With Us to Get Started</a>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PACKAGES ============ -->
 <section id="packages">
   <div class="container">
@@ -4008,14 +4139,17 @@ footer {
         <div class="map-container reveal" style="height:300px; padding:0; overflow:hidden;">
           <div class="map-iframe-wrap" style="height:100%;">
             <iframe
-              title="Eden Ayurveda Hospital Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31476.89399066903!2d76.2440263!3d9.9312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b087b6bbbbbbbbb%3A0x0!2sKanayannur%2C%20Kerala%20682020!5e0!3m2!1sen!2sin!4v1699000000000!5m2!1sen!2sin"
+              title="Eden Ayurveda Hospital — Walayar, Palakkad"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0!2d76.5921!3d10.8519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7e5e2e5d4a1b1%3A0xa1b2c3d4e5f60000!2sEden%20Ayurveda%20Hospital%2C%20Walayar%2C%20Palakkad%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               style="width:100%;height:100%;border:none;border-radius:var(--radius-lg);">
             </iframe>
           </div>
+          <a href="https://maps.app.goo.gl/evdhyAUTBPazGK679" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:0.9rem;font-size:0.75rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;transition:opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+            📍 Open Eden Ayurveda Hospital in Google Maps →
+          </a>
         </div>
       </div>
       <div class="reveal-right">
@@ -4087,130 +4221,6 @@ footer {
           <p style="text-align:center; font-size:0.72rem; color:var(--text-muted); margin-top:1rem;">We respond within 24 hours. Your data is safe with us.</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAMILY HEALTH CARDS ============ -->
-<section id="health-cards">
-  <div class="container">
-    <div style="text-align:center; max-width:620px; margin:0 auto 1rem;">
-      <div class="section-label reveal" style="justify-content:center;">Membership Program</div>
-      <h2 class="section-title reveal">Eden Family<br><em>Health Card Program</em></h2>
-      <p class="section-subtitle reveal" style="margin:0 auto;">Annual membership cards that bring the healing power of Ayurveda to your entire family — with priority access, therapy sessions, and exclusive benefits across all our branches.</p>
-    </div>
-    <div class="health-cards-grid">
-
-      <!-- GOLD -->
-      <div class="health-card-row reveal">
-        <div class="hc-visual gold">
-          <div class="hc-card-mock">
-            <div class="hc-card-logo">Eden Ayurveda Hospital</div>
-            <div class="hc-card-subtitle">HO: Kannalpirivu, Walayar, Palakkad – 676 824</div>
-            <div><span class="hc-card-label gold-label">Ayurveda Family Health Card</span></div>
-            <div class="hc-card-number">4000 &nbsp; 7364 &nbsp; 554 &nbsp; 0101</div>
-            <div class="hc-card-validity">
-              <span>Valid From<br><strong>01/01/26</strong></span>
-              <span>Valid Up to<br><strong>01/01/28</strong></span>
-            </div>
-            <div class="hc-card-tier-badge">GOLD</div>
-          </div>
-        </div>
-        <div class="hc-content">
-          <div class="hc-tier-tag gold-tag"><span class="hc-tier-dot gold-dot"></span> Premium Tier</div>
-          <div class="hc-name">Gold Family Health Card</div>
-          <div class="hc-price">₹1,00,000</div>
-          <div class="hc-sessions">Includes 100 therapy sessions · Valid 2 Years</div>
-          <p class="hc-desc">Ideal for families requiring extensive Ayurvedic care throughout the year. This premium plan ensures priority appointments, the widest range of therapies, and full access across all Eden branches — covering every member of your family with the highest standard of classical Ayurvedic treatment.</p>
-          <div class="hc-perks">
-            <span class="hc-perk">100 Therapy Sessions</span>
-            <span class="hc-perk">Priority Booking</span>
-            <span class="hc-perk">All Branches</span>
-            <span class="hc-perk">Family Coverage</span>
-            <span class="hc-perk">2-Year Validity</span>
-            <span class="hc-perk">Free Consultations</span>
-          </div>
-          <div class="hc-actions">
-            <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%2C%20I%20am%20interested%20in%20the%20Gold%20Family%20Health%20Card%20program." target="_blank" class="btn-primary">Enquire on WhatsApp →</a>
-            <a href="#contact" class="btn-outline">Learn More</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- SILVER -->
-      <div class="health-card-row reveal">
-        <div class="hc-visual silver">
-          <div class="hc-card-mock">
-            <div class="hc-card-logo">Eden Ayurveda Hospital</div>
-            <div class="hc-card-subtitle">HO: Kannalpirivu, Walayar, Palakkad – 676 824</div>
-            <div><span class="hc-card-label silver-label">Ayurveda Family Health Card</span></div>
-            <div class="hc-card-number">4000 &nbsp; 7364 &nbsp; 554 &nbsp; 0101</div>
-            <div class="hc-card-validity">
-              <span>Valid From<br><strong>01/01/26</strong></span>
-              <span>Valid Up to<br><strong>01/01/28</strong></span>
-            </div>
-            <div class="hc-card-tier-badge">SILVER</div>
-          </div>
-        </div>
-        <div class="hc-content">
-          <div class="hc-tier-tag silver-tag"><span class="hc-tier-dot silver-dot"></span> Classic Tier</div>
-          <div class="hc-name">Silver Family Health Card</div>
-          <div class="hc-price">₹50,000</div>
-          <div class="hc-sessions">Includes 40 therapy sessions · Valid 2 Years</div>
-          <p class="hc-desc">Best suited for moderate healthcare needs, offering flexibility and affordability for individuals or families. Covers a broad range of Ayurvedic therapies across our branches, giving you reliable, quality Ayurvedic care whenever you need it throughout the year.</p>
-          <div class="hc-perks">
-            <span class="hc-perk">40 Therapy Sessions</span>
-            <span class="hc-perk">Flexible Booking</span>
-            <span class="hc-perk">All Branches</span>
-            <span class="hc-perk">Family Coverage</span>
-            <span class="hc-perk">2-Year Validity</span>
-          </div>
-          <div class="hc-actions">
-            <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%2C%20I%20am%20interested%20in%20the%20Silver%20Family%20Health%20Card%20program." target="_blank" class="btn-primary">Enquire on WhatsApp →</a>
-            <a href="#contact" class="btn-outline">Learn More</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- GREEN / PREMIUM -->
-      <div class="health-card-row reveal">
-        <div class="hc-visual green">
-          <div class="hc-card-mock">
-            <div class="hc-card-logo">Eden Ayurveda Hospital</div>
-            <div class="hc-card-subtitle">HO: Kannalpirivu, Walayar, Palakkad – 676 824</div>
-            <div><span class="hc-card-label green-label">Ayurveda Family Health Card</span></div>
-            <div class="hc-card-number">4000 &nbsp; 7364 &nbsp; 554 &nbsp; 0101</div>
-            <div class="hc-card-validity">
-              <span>Valid From<br><strong>01/01/26</strong></span>
-              <span>Valid Up to<br><strong>01/01/28</strong></span>
-            </div>
-            <div class="hc-card-tier-badge">QUAL.</div>
-          </div>
-        </div>
-        <div class="hc-content">
-          <div class="hc-tier-tag green-tag"><span class="hc-tier-dot green-dot"></span> Starter Tier</div>
-          <div class="hc-name">Premium Family Health Card</div>
-          <div class="hc-price">₹30,000</div>
-          <div class="hc-sessions">Includes 18 therapy sessions · Valid 2 Years</div>
-          <p class="hc-desc">A budget-friendly option for preventive care, seasonal detox, and early health management — providing your family with regular access to authentic Ayurvedic therapies. The ideal starting point for families looking to embrace an Ayurvedic lifestyle without a large initial commitment.</p>
-          <div class="hc-perks">
-            <span class="hc-perk">18 Therapy Sessions</span>
-            <span class="hc-perk">Preventive Care</span>
-            <span class="hc-perk">Seasonal Detox</span>
-            <span class="hc-perk">Family Coverage</span>
-            <span class="hc-perk">2-Year Validity</span>
-          </div>
-          <div class="hc-actions">
-            <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%2C%20I%20am%20interested%20in%20the%20Premium%20Family%20Health%20Card%20program." target="_blank" class="btn-primary">Enquire on WhatsApp →</a>
-            <a href="#contact" class="btn-outline">Learn More</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div style="text-align:center; margin-top:2.5rem;" class="reveal">
-      <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1rem;">Cards are valid across all Eden Ayurveda branches. Sessions can be shared among family members. Contact us for custom corporate wellness packages.</p>
-      <a href="https://wa.me/918129246660?text=Hello%20Eden%20Ayurveda%2C%20I%20would%20like%20to%20know%20more%20about%20the%20Family%20Health%20Card%20program." target="_blank" class="btn-green">💬 Chat With Us to Get Started</a>
     </div>
   </div>
 </section>
