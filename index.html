@@ -2864,7 +2864,105 @@
       filter: grayscale(0.6) invert(0);
     }
 
-    filter: grayscale(0.5) invert(0.9) hue-rotate(180deg);
+    /* ============================================
+       LOCATION TOGGLE TABS
+    ============================================ */
+    .location-toggle-wrap {
+      margin-top: 1.2rem;
+    }
+
+    .location-tabs {
+      display: flex;
+      gap: 0;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      border-bottom: none;
+    }
+
+    .location-tab {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-align: center;
+      cursor: pointer;
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      border: none;
+      transition: all 0.3s ease;
+      position: relative;
+      font-family: var(--font-heading);
+    }
+
+    .location-tab:not(:last-child) {
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .location-tab:hover {
+      color: var(--text-primary);
+      background: rgba(var(--gold-rgb, 191, 155, 81), 0.08);
+    }
+
+    .location-tab.active {
+      background: rgba(var(--gold-rgb, 191, 155, 81), 0.12);
+      color: var(--gold);
+    }
+
+    .location-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 20%;
+      width: 60%;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .location-tab-icon {
+      margin-right: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .location-panel {
+      display: none;
+      border: 1px solid var(--border-subtle);
+      border-top: none;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      overflow: hidden;
+      animation: locationFadeIn 0.35s ease;
+    }
+
+    .location-panel.active {
+      display: block;
+    }
+
+    @keyframes locationFadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .location-panel .map-iframe-wrap {
+      height: 260px;
+    }
+
+    .location-panel-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1rem;
+      font-size: 0.73rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: opacity 0.3s ease;
+      text-decoration: none;
+    }
+
+    .location-panel-link:hover {
+      opacity: 0.7;
     }
 
     /* ============================================
@@ -5206,19 +5304,41 @@
               </div>
             </div>
           </div>
-          <div class="map-container reveal" style="height:300px; padding:0; overflow:hidden;">
-            <div class="map-iframe-wrap" style="height:100%;">
-              <iframe title="Eden Ayurveda Hospital — Walayar, Palakkad"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0!2d76.5921!3d10.8519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7e5e2e5d4a1b1%3A0xa1b2c3d4e5f60000!2sEden%20Ayurveda%20Hospital%2C%20Walayar%2C%20Palakkad%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                style="width:100%;height:100%;border:none;border-radius:var(--radius-lg);">
-              </iframe>
+          <div class="location-toggle-wrap reveal">
+            <div class="location-tabs">
+              <button class="location-tab active" onclick="switchLocation('walayar', this)">
+                <span class="location-tab-icon">🏥</span> Walayar (HO)
+              </button>
+              <button class="location-tab" onclick="switchLocation('palakkad', this)">
+                <span class="location-tab-icon">🏥</span> Palakkad Branch
+              </button>
             </div>
-            <a href="https://maps.app.goo.gl/evdhyAUTBPazGK679" target="_blank" rel="noopener"
-              style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:0.9rem;font-size:0.75rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;transition:opacity 0.3s ease;"
-              onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-              📍 Open Eden Ayurveda Hospital in Google Maps →
-            </a>
+            <!-- Walayar Panel -->
+            <div class="location-panel active" id="loc-walayar">
+              <div class="map-iframe-wrap">
+                <iframe title="Eden Ayurveda Hospital — Walayar, Palakkad"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0!2d76.5921!3d10.8519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7e5e2e5d4a1b1%3A0xa1b2c3d4e5f60000!2sEden%20Ayurveda%20Hospital%2C%20Walayar%2C%20Palakkad%2C%20Kerala!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  style="width:100%;height:100%;border:none;">
+                </iframe>
+              </div>
+              <a href="https://maps.app.goo.gl/evdhyAUTBPazGK679" target="_blank" rel="noopener" class="location-panel-link">
+                📍 Open Walayar Location in Google Maps →
+              </a>
+            </div>
+            <!-- Palakkad Panel -->
+            <div class="location-panel" id="loc-palakkad">
+              <div class="map-iframe-wrap">
+                <iframe title="Eden Ayurveda Hospital — Palakkad Branch"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3919.0!2d76.6331918!3d10.8114817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!1s0x0%3A0x0!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                  allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  style="width:100%;height:100%;border:none;">
+                </iframe>
+              </div>
+              <a href="https://www.google.com/maps/place/10%C2%B048'41.3%22N+76%C2%B038'08.8%22E/@10.8114817,76.6357667,17z" target="_blank" rel="noopener" class="location-panel-link">
+                📍 Open Palakkad Location in Google Maps →
+              </a>
+            </div>
           </div>
         </div>
         <div class="reveal-right">
@@ -5565,6 +5685,16 @@
         item.classList.add('open');
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
+    }
+
+    // ============================================
+    // LOCATION TOGGLE
+    // ============================================
+    function switchLocation(location, btn) {
+      document.querySelectorAll('.location-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.location-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('loc-' + location).classList.add('active');
     }
 
 
