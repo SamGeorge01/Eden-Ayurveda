@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Maps 360° Walkthrough Demo | Eden Ayurveda Hospital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0b150f;
+      --bg-card: #112017;
+      --accent: #2e593f;
+      --accent-light: #a8c5a0;
+      --gold: #d4af37;
+      --text-primary: #eef4ec;
+      --text-secondary: #9ab89e;
+      --text-muted: #6b8f70;
+      --border: rgba(168, 197, 160, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Outfit', sans-serif;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .demo-container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(168, 197, 160, 0.12);
+      border: 1px solid rgba(168, 197, 160, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .demo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 0.8rem;
+      color: #fff;
+    }
+
+    .demo-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Street View Component Styles */
+    .gmp-streetview-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      width: 100%;
+    }
+
+    .gmp-streetview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1.4rem;
+      background: rgba(14, 28, 20, 0.9);
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .gmp-streetview-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: #fff;
+    }
+
+    .gmp-live-badge {
+      background: rgba(212, 175, 55, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .gmp-pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    .gmp-location-sub {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .gmp-streetview-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .gmp-btn-fullscreen {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .gmp-btn-fullscreen:hover {
+      background: rgba(168, 197, 160, 0.25);
+      border-color: var(--accent-light);
+    }
+
+    .gmp-btn-maps {
+      background: linear-gradient(135deg, #1a73e8, #1557b0);
+      color: #fff !important;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .gmp-btn-maps:hover {
+      background: linear-gradient(135deg, #2b7de9, #1a62c7);
+      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.4);
+    }
+
+    .gmp-streetview-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 480px;
+      background: #08110b;
+    }
+
+    @media (max-width: 768px) {
+      .gmp-streetview-viewport {
+        aspect-ratio: 4 / 3;
+        min-height: 380px;
+      }
+    }
+
+    .gmp-streetview-cover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      z-index: 5;
+    }
+
+    .gmp-cover-backdrop {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35);
+      z-index: -1;
+    }
+
+    .gmp-cover-content {
+      max-width: 580px;
+    }
+
+    .gmp-cover-badge {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(168, 197, 160, 0.3);
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .gmp-cover-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: #fff;
+      margin-bottom: 0.8rem;
+      line-height: 1.25;
+    }
+
+    .gmp-cover-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .gmp-btn-launch {
+      background: linear-gradient(135deg, var(--accent), #1f3d2b);
+      border: 1px solid var(--accent-light);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.85rem 1.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 6px 25px rgba(46, 89, 63, 0.4);
+    }
+
+    .gmp-btn-launch:hover {
+      background: linear-gradient(135deg, #3a6f4e, #264b35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(168, 197, 160, 0.3);
+    }
+
+    .gmp-cover-subtext {
+      margin-top: 1.2rem;
+    }
+
+    .gmp-cover-subtext a {
+      color: var(--gold);
+      font-size: 0.82rem;
+      text-decoration: underline;
+    }
+
+    /* Instructions card */
+    .config-card {
+      margin-top: 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .config-card h4 {
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .config-card code {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      color: #4ade80;
+      font-size: 0.85rem;
+    }
+
+    .config-card ol {
+      padding-left: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-container">
+    <div class="demo-header">
+      <div class="demo-badge">Google Maps Platform · Street View Walkthrough</div>
+      <h1 class="demo-title">Walayar Hospital 360° Walkthrough</h1>
+      <p class="demo-subtitle">
+        Interactive property walkthrough powered by Google Maps Street View. Explore the entrance, pharmacy, and hospital campus with full Street View navigation chevrons.
+      </p>
+    </div>
+
+    <!-- Component Mount Target -->
+    <div id="hospital-360-walkthrough"></div>
+
+    <!-- Integration & Config Details -->
+    <div class="config-card">
+      <h4>🛠️ Setup & Environment Configuration</h4>
+      <ol>
+        <li><strong>Enable APIs</strong> in Google Cloud Console: Enable <code>Maps JavaScript API</code> and <code>Maps Embed API</code>.</li>
+        <li><strong>API Key Variable</strong>: Set <code>window.GOOGLE_MAPS_API_KEY = "YOUR_KEY"</code> or <code>VITE_GOOGLE_MAPS_API_KEY</code>.</li>
+        <li><strong>Key Restrictions</strong>: Restrict by HTTP referrers (e.g. <code>https://yourdomain.com/*</code>) to prevent unauthorized usage.</li>
+        <li><strong>Fallback Behavior</strong>: When no API key is provided, the component displays an interactive launch card with a direct deep link into Google Maps.</li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="js/google-streetview-viewer.js"></script>
+  <script>
+    // Initialize the Walkthrough Component
+    const walkthrough = new GoogleStreetViewWalkthrough({
+      containerId: 'hospital-360-walkthrough',
+      latitude: 10.8209446,
+      longitude: 76.8118097,
+      heading: 179.12,
+      pitch: 0,
+      fov: 75,
+      googleMapsUrl: 'https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,179.12h,86.17t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi3.8343052273591383-ya4.122231998164352-ro0-fo100!7i11904!8i5952?entry=ttu',
+      apiKey: window.GOOGLE_MAPS_API_KEY || ''
+    });
+  </script>
+</body>
+</html>

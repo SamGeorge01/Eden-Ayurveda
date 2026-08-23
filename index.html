@@ -76,7 +76,6 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="vendor/pannellum.css">
 
   <style>
     /* ============================================
@@ -4107,7 +4106,7 @@
     }
 
     /* ============================================
-       360° VIRTUAL TOUR PORTAL
+       360° VIRTUAL TOUR PORTAL (GOOGLE STREET VIEW)
     ============================================ */
     #virtual-tour {
       padding: 100px 0;
@@ -4174,27 +4173,29 @@
       100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
     }
 
-    .tour-portal-frame {
-      position: relative;
-      border-radius: 20px;
+    /* Google Street View Card Component */
+    .gmp-streetview-card {
+      background: #0d1a12;
+      border: 1px solid rgba(168, 197, 160, 0.2);
+      border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(168, 197, 160, 0.2);
-      background: #08110b;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      width: 100%;
     }
 
-    .tour-portal-bar {
+    .gmp-streetview-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.9rem 1.4rem;
-      background: rgba(13, 26, 18, 0.85);
+      padding: 0.85rem 1.4rem;
+      background: rgba(13, 26, 18, 0.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(168, 197, 160, 0.15);
       flex-wrap: wrap;
       gap: 0.8rem;
     }
 
-    .tour-location-tag {
+    .gmp-streetview-title {
       display: flex;
       align-items: center;
       gap: 0.6rem;
@@ -4203,7 +4204,7 @@
       color: var(--text-primary);
     }
 
-    .tour-location-tag span.badge {
+    .gmp-live-badge {
       background: var(--gold-subtle);
       color: var(--gold);
       border: 1px solid rgba(212, 175, 55, 0.3);
@@ -4212,77 +4213,118 @@
       font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.05em;
-    }
-
-    .tour-controls-bar {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
-    .tour-ctrl-btn {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-primary);
-      padding: 0.45rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      transition: all 0.25s ease;
-      font-family: inherit;
     }
 
-    .tour-ctrl-btn:hover {
-      background: rgba(168, 197, 160, 0.2);
-      border-color: var(--accent-light);
+    .gmp-pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4ade80;
+    }
+
+    .gmp-location-sub {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .gmp-streetview-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .gmp-btn-fullscreen {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .gmp-btn-fullscreen:hover {
+      background: rgba(168, 197, 160, 0.25);
+      border-color: var(--accent-light);
+    }
+
+    .gmp-btn-maps {
+      background: linear-gradient(135deg, #1a73e8, #1557b0);
+      color: #fff !important;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.45rem 0.95rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .gmp-btn-maps:hover {
+      background: linear-gradient(135deg, #2b7de9, #1a62c7);
+      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.4);
       transform: translateY(-1px);
     }
 
-    .tour-ctrl-btn.active {
-      background: var(--accent);
-      border-color: var(--accent-light);
-      color: #fff;
-    }
-
-    .tour-viewport-wrap {
+    .gmp-streetview-viewport {
       position: relative;
       width: 100%;
-      height: 560px;
-      background: #0d1a12;
-      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      min-height: 520px;
+      background: #08110b;
     }
 
-    #panorama-360-viewer {
-      width: 100%;
-      height: 100%;
-      background: #0d1a12;
-      position: relative;
+    @media (max-width: 768px) {
+      .gmp-streetview-viewport {
+        aspect-ratio: 4 / 3;
+        min-height: 400px;
+      }
     }
 
-    .tour-cover-overlay {
+    .gmp-streetview-cover {
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(10, 20, 14, 0.7), rgba(10, 20, 14, 0.9)),
-                  url('images/walayar_360_cover.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 2rem;
-      z-index: 10;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 5;
     }
 
-    .tour-cover-content {
-      max-width: 600px;
+    .gmp-cover-backdrop {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35);
+      z-index: -1;
     }
 
-    .tour-cover-heading {
+    .gmp-cover-content {
+      max-width: 580px;
+    }
+
+    .gmp-cover-badge {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(168, 197, 160, 0.3);
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .gmp-cover-heading {
       font-family: var(--font-serif);
       font-size: clamp(1.4rem, 3vw, 2.1rem);
       color: #fff;
@@ -4290,146 +4332,43 @@
       line-height: 1.25;
     }
 
-    .tour-cover-desc {
+    .gmp-cover-desc {
       color: var(--text-secondary);
       font-size: 0.9rem;
       line-height: 1.6;
       margin-bottom: 1.6rem;
     }
 
-    @media (max-width: 768px) {
-      .tour-viewport-wrap,
-      #panorama-360-viewer {
-        height: 420px;
-      }
-      .tour-cover-overlay {
-        padding: 1.2rem;
-      }
-    }
-
-    .tour-hints-overlay {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(8, 17, 11, 0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(168, 197, 160, 0.25);
-      padding: 0.5rem 1.2rem;
-      border-radius: 30px;
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 5;
-      animation: fadeOutHint 8s forwards;
-      white-space: nowrap;
-    }
-
-    @keyframes fadeOutHint {
-      0%, 70% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    /* Walkthrough Scenes Ribbon */
-    .tour-scenes-ribbon {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      padding: 0.85rem 1.4rem;
-      background: rgba(10, 22, 15, 0.95);
-      border-top: 1px solid rgba(168, 197, 160, 0.18);
-      backdrop-filter: blur(10px);
-    }
-
-    .tour-scenes-title {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-light);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .tour-scenes-buttons {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .tour-scene-tab {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-secondary);
-      font-size: 0.76rem;
-      padding: 0.45rem 0.85rem;
-      border-radius: 6px;
+    .gmp-btn-launch {
+      background: linear-gradient(135deg, var(--accent), #1f3d2b);
+      border: 1px solid var(--accent-light);
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 0.85rem 1.9rem;
+      border-radius: 8px;
       cursor: pointer;
-      font-family: inherit;
-      transition: all 0.25s ease;
+      transition: all 0.3s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.5rem;
+      box-shadow: 0 6px 25px rgba(46, 89, 63, 0.4);
     }
 
-    .tour-scene-tab:hover {
-      background: rgba(168, 197, 160, 0.2);
-      border-color: var(--accent-light);
-      color: #fff;
-      transform: translateY(-1px);
+    .gmp-btn-launch:hover {
+      background: linear-gradient(135deg, #3a6f4e, #264b35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(168, 197, 160, 0.35);
     }
 
-    .tour-scene-tab.active {
-      background: var(--accent);
-      border-color: var(--accent-light);
-      color: #fff;
-      font-weight: 600;
-      box-shadow: 0 0 12px rgba(168, 197, 160, 0.35);
+    .gmp-cover-subtext {
+      margin-top: 1.2rem;
     }
 
-    /* Custom Pannellum Hotspot & Navigation Arrow Styling */
-    .pnlm-hotspot-base.pnlm-scene {
-      background-color: rgba(74, 222, 128, 0.9) !important;
-      border: 2.5px solid #ffffff !important;
-      box-shadow: 0 0 16px rgba(74, 222, 128, 0.9), 0 0 0 4px rgba(74, 222, 128, 0.35) !important;
-      width: 28px !important;
-      height: 28px !important;
-      border-radius: 50% !important;
-      animation: hotspotPulse 2.2s infinite ease-in-out !important;
-      cursor: pointer !important;
-      transition: transform 0.2s ease !important;
-    }
-
-    .pnlm-hotspot-base.pnlm-scene:hover {
-      transform: scale(1.3) !important;
-      background-color: #ffffff !important;
-      border-color: #4ade80 !important;
-    }
-
-    @keyframes hotspotPulse {
-      0% { transform: scale(0.92); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.8); }
-      70% { transform: scale(1.18); box-shadow: 0 0 0 12px rgba(74, 222, 128, 0); }
-      100% { transform: scale(0.92); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
-    }
-
-    .pnlm-tooltip span {
-      background: rgba(10, 22, 15, 0.94) !important;
-      border: 1px solid rgba(168, 197, 160, 0.45) !important;
-      color: #eef4ec !important;
-      font-family: inherit !important;
-      font-size: 0.82rem !important;
-      font-weight: 500 !important;
-      padding: 0.45rem 0.85rem !important;
-      border-radius: 8px !important;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6) !important;
-      white-space: nowrap !important;
+    .gmp-cover-subtext a {
+      color: var(--gold);
+      font-size: 0.82rem;
+      text-decoration: underline;
     }
 
     .tour-bottom-actions {
@@ -4462,28 +4401,6 @@
       align-items: center;
       gap: 1rem;
       flex-wrap: wrap;
-    }
-
-    .btn-maps-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, #1a73e8, #1557b0);
-      color: #fff !important;
-      font-weight: 500;
-      font-size: 0.82rem;
-      padding: 0.65rem 1.4rem;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
-    }
-
-    .btn-maps-link:hover {
-      background: linear-gradient(135deg, #2b7de9, #1a62c7);
-      box-shadow: 0 6px 20px rgba(26, 115, 232, 0.5);
-      transform: translateY(-2px);
-      color: #fff !important;
     }
 
     .nav-360-badge {
@@ -5547,104 +5464,21 @@
       <div class="tour-header-center">
         <div class="tour-360-badge reveal">
           <span class="tour-pulse-dot"></span>
-          Interactive 360° Virtual Experience
+          Interactive Google Street View
         </div>
         <h2 class="section-title reveal">
-          Explore Our Walayar Hospital<br><em>in Immersive 360° View</em>
+          Explore Our Walayar Hospital<br><em>in 360° Walkthrough</em>
         </h2>
         <div class="divider reveal" style="margin: 1.2rem auto;"></div>
         <p class="section-subtitle reveal" style="margin: 0 auto;">
-          Experience our main hospital campus at Kannalpirivu, Walayar, Palakkad — the gateway to Kerala. Click and drag to look around in 360°, inspect the hospital grounds, traditional pharmacy, and mountain backdrop.
+          Take an authentic 360° tour of our main hospital campus at Kannalpirivu, Walayar, Palakkad — the gateway to Kerala. Walk through the entrance and explore the property with Google Maps Street View.
         </p>
       </div>
 
-      <div class="tour-portal-frame reveal">
-        <!-- Portal Top Bar -->
-        <div class="tour-portal-bar">
-          <div class="tour-location-tag">
-            <span class="badge">VIRTUAL WALKTHROUGH</span>
-            <strong id="tour-current-location">Campus Entrance & Pharmacy</strong>
-            <span style="color:var(--text-muted);font-size:0.8rem;">· Walayar (HO), Palakkad, Kerala</span>
-          </div>
-          <div class="tour-controls-bar">
-            <button class="tour-ctrl-btn" id="btn-360-rotate" onclick="toggle360Rotate()" title="Toggle Auto-Spin" style="display:none;">
-              ⏸ Pause Spin
-            </button>
-            <button class="tour-ctrl-btn" id="btn-360-zoomin" onclick="zoom360(-15)" title="Zoom In" style="display:none;">
-              🔍+
-            </button>
-            <button class="tour-ctrl-btn" id="btn-360-zoomout" onclick="zoom360(15)" title="Zoom Out" style="display:none;">
-              🔍-
-            </button>
-            <button class="tour-ctrl-btn" id="btn-360-reset" onclick="reset360View()" title="Reset View" style="display:none;">
-              ↺ Reset
-            </button>
-            <button class="tour-ctrl-btn" id="btn-360-fs" onclick="fullscreen360()" title="Toggle Fullscreen" style="display:none;">
-              ⛶ Fullscreen
-            </button>
-          </div>
-        </div>
+      <!-- Google Street View Walkthrough Component Mount Target -->
+      <div id="hospital-360-walkthrough" class="reveal"></div>
 
-        <!-- 360 Viewport with On-Demand Cloud Streaming -->
-        <div class="tour-viewport-wrap">
-          <div id="panorama-360-viewer"></div>
-
-          <!-- On-Demand Cover Overlay (Zero upfront loading overhead) -->
-          <div id="panorama-cover-overlay" class="tour-cover-overlay">
-            <div class="tour-cover-content">
-              <div class="tour-360-badge" style="margin-bottom:0.8rem;">
-                <span class="tour-pulse-dot"></span> Interactive Google Street View Walkthrough
-              </div>
-              <h3 class="tour-cover-heading">
-                Step Inside & Walk Around Our Walayar Hospital
-              </h3>
-              <p class="tour-cover-desc">
-                Walk through the entrance, traditional gateway, pharmacy, treatment suites, and herbal garden. Click the in-scene arrows or use the walkthrough tabs below to move between locations.
-              </p>
-              <button class="btn-primary" onclick="launch360Tour('entrance')" id="btn-launch-360" style="margin:0 auto;cursor:pointer;box-shadow:0 8px 30px rgba(168,197,160,0.3);">
-                <span>🚶</span> Start Virtual Walkthrough Tour
-              </button>
-              <div style="margin-top:1.2rem;">
-                <a href="https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,175h,90t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi0-ya0-ro0-fo100!7i11904!8i5952?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
-                  target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:0.82rem;text-decoration:underline;">
-                  Or open full walkthrough in Google Maps app ↗
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Interactive Drag Hint -->
-          <div class="tour-hints-overlay" id="tour-hint" style="display:none;">
-            <span>👆 Drag to look 360° · Click green pulsating circles on the ground to walk to next area</span>
-          </div>
-        </div>
-
-        <!-- Property Walkthrough Navigation Ribbon -->
-        <div class="tour-scenes-ribbon">
-          <div class="tour-scenes-title">
-            <span>🚶 Walk to Location:</span>
-          </div>
-          <div class="tour-scenes-buttons">
-            <button class="tour-scene-tab active" id="tab-scene-entrance" onclick="switchTourScene('entrance')">
-              🏛️ Main Entrance & Highway
-            </button>
-            <button class="tour-scene-tab" id="tab-scene-gate" onclick="switchTourScene('gate')">
-              ⛩️ Traditional Gateway
-            </button>
-            <button class="tour-scene-tab" id="tab-scene-pharmacy" onclick="switchTourScene('pharmacy')">
-              🌿 Herbal Pharmacy
-            </button>
-            <button class="tour-scene-tab" id="tab-scene-treatment_rooms" onclick="switchTourScene('treatment_rooms')">
-              🛏️ Treatment Suites
-            </button>
-            <button class="tour-scene-tab" id="tab-scene-garden" onclick="switchTourScene('garden')">
-              🍃 Herbal Sanctuary
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portal Bottom Action Bar -->
+      <!-- Portal Bottom Info Bar -->
       <div class="tour-bottom-actions reveal">
         <div class="tour-info-summary">
           <span style="font-size:1.5rem;">📍</span>
@@ -5654,12 +5488,12 @@
           </div>
         </div>
         <div class="tour-action-btns">
-          <a href="https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,175h,90t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi0-ya0-ro0-fo100!7i11904!8i5952?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank" rel="noopener noreferrer" class="btn-maps-link" id="google-maps-360-link">
+          <a href="https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,179.12h,86.17t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi3.8343052273591383-ya4.122231998164352-ro0-fo100!7i11904!8i5952?entry=ttu"
+            target="_blank" rel="noopener noreferrer" class="gmp-btn-maps">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
-            Watch 360° on Google Maps ↗
+            Open in Google Maps ↗
           </a>
           <a href="https://wa.me/919061218055?text=Hello%20Eden%20Ayurveda%20Hospital%2C%20I%20saw%20your%20Walayar%20hospital%20360%20tour%20and%20would%20like%20to%20enquire%20about%20treatments."
             target="_blank" class="btn-outline" style="font-size:0.82rem;padding:0.65rem 1.2rem;">
@@ -6056,277 +5890,23 @@
   </div>
 
   <!-- ============ JAVASCRIPT ============ -->
-  <script src="vendor/pannellum.js"></script>
+  <script src="js/google-streetview-viewer.js"></script>
   <script>
     // ============================================
-    // 360° VIRTUAL WALKTHROUGH TOUR (MULTI-SCENE + HOTSPOTS)
+    // GOOGLE MAPS 360° STREET VIEW WALKTHROUGH
     // ============================================
-    let panoramaViewer = null;
-    let isAutoRotating = true;
-    let currentSceneId = 'entrance';
-
-    const scenesData = {
-      entrance: {
-        shortName: 'Campus Entrance & Highway View',
-        title: 'Eden Ayurveda Hospital — Walayar Campus Entrance & Highway',
-        panorama: 'https://lh3.googleusercontent.com/gpms-cs-s/AFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0=w1800-h900',
-        pitch: -2,
-        yaw: 175,
-        hfov: 105,
-        hotSpots: [
-          {
-            pitch: -6,
-            yaw: 175,
-            type: 'scene',
-            text: 'Walk into Traditional Gateway & Treatment Block →',
-            sceneId: 'gate'
-          },
-          {
-            pitch: 0,
-            yaw: 135,
-            type: 'scene',
-            text: 'Step to Herbal Pharmacy & Dispensary →',
-            sceneId: 'pharmacy'
-          }
-        ]
-      },
-      gate: {
-        shortName: 'Traditional Gateway & Healing Courtyard',
-        title: 'Hospital Traditional Gateway & Healing Courtyard',
-        panorama: 'images/hero_sanctuary.jpg',
+    document.addEventListener('DOMContentLoaded', () => {
+      new GoogleStreetViewWalkthrough({
+        containerId: 'hospital-360-walkthrough',
+        latitude: 10.8209446,
+        longitude: 76.8118097,
+        heading: 179.12,
         pitch: 0,
-        yaw: 0,
-        hfov: 100,
-        hotSpots: [
-          {
-            pitch: -6,
-            yaw: 180,
-            type: 'scene',
-            text: '← Walk Back to Highway Entrance',
-            sceneId: 'entrance'
-          },
-          {
-            pitch: -3,
-            yaw: 45,
-            type: 'scene',
-            text: 'Walk to Classical Pharmacy & Reception →',
-            sceneId: 'pharmacy'
-          },
-          {
-            pitch: -2,
-            yaw: -45,
-            type: 'scene',
-            text: 'Walk to Private Treatment Suites →',
-            sceneId: 'treatment_rooms'
-          }
-        ]
-      },
-      pharmacy: {
-        shortName: 'Classical Herbal Pharmacy & Rasashala',
-        title: 'Eden Ayurveda Classical Medicine Preparation & Dispensary',
-        panorama: 'images/wellness_pharmacy.jpg',
-        pitch: 0,
-        yaw: 0,
-        hfov: 100,
-        hotSpots: [
-          {
-            pitch: -6,
-            yaw: 180,
-            type: 'scene',
-            text: '← Return to Main Entrance',
-            sceneId: 'entrance'
-          },
-          {
-            pitch: -2,
-            yaw: 55,
-            type: 'scene',
-            text: 'Walk to Treatment Suites & Droni Rooms →',
-            sceneId: 'treatment_rooms'
-          }
-        ]
-      },
-      treatment_rooms: {
-        shortName: 'Private Treatment Suites & Droni Rooms',
-        title: 'Serene Private Ayurvedic Treatment Suites & Teak Droni Room',
-        panorama: 'images/wellness_rooms.jpg',
-        pitch: 0,
-        yaw: 0,
-        hfov: 100,
-        hotSpots: [
-          {
-            pitch: -6,
-            yaw: 180,
-            type: 'scene',
-            text: '← Back to Traditional Gateway',
-            sceneId: 'gate'
-          },
-          {
-            pitch: -3,
-            yaw: 60,
-            type: 'scene',
-            text: 'Step Outside to Herbal Sanctuary & Yoga Pavilion →',
-            sceneId: 'garden'
-          }
-        ]
-      },
-      garden: {
-        shortName: 'Herbal Garden & Yoga Sanctuary',
-        title: 'Medicinal Botanical Garden & Sunrise Yoga Pavilion',
-        panorama: 'images/wellness_nature.jpg',
-        pitch: 0,
-        yaw: 0,
-        hfov: 100,
-        hotSpots: [
-          {
-            pitch: -6,
-            yaw: 180,
-            type: 'scene',
-            text: '← Return to Treatment Suites',
-            sceneId: 'treatment_rooms'
-          },
-          {
-            pitch: -4,
-            yaw: 110,
-            type: 'scene',
-            text: 'Walk to Main Campus Entrance Gate →',
-            sceneId: 'entrance'
-          }
-        ]
-      }
-    };
-
-    function launch360Tour(initialScene = 'entrance') {
-      const overlay = document.getElementById('panorama-cover-overlay');
-      const btn = document.getElementById('btn-launch-360');
-      const hint = document.getElementById('tour-hint');
-
-      if (btn) {
-        btn.innerHTML = '<span>⏳</span> Connecting to Google Cloud API...';
-        btn.style.opacity = '0.85';
-        btn.disabled = true;
-      }
-
-      // Show controls
-      ['btn-360-rotate', 'btn-360-zoomin', 'btn-360-zoomout', 'btn-360-reset', 'btn-360-fs'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'inline-flex';
+        fov: 75,
+        googleMapsUrl: 'https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,179.12h,86.17t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi3.8343052273591383-ya4.122231998164352-ro0-fo100!7i11904!8i5952?entry=ttu',
+        apiKey: window.GOOGLE_MAPS_API_KEY || ''
       });
-
-      if (typeof pannellum !== 'undefined') {
-        try {
-          const formattedScenes = {};
-          Object.keys(scenesData).forEach(key => {
-            const sc = scenesData[key];
-            formattedScenes[key] = {
-              title: sc.title,
-              type: 'equirectangular',
-              panorama: sc.panorama,
-              pitch: sc.pitch || 0,
-              yaw: sc.yaw || 0,
-              hfov: sc.hfov || 100,
-              autoLoad: true,
-              autoRotate: -1.5,
-              autoRotateInactivityDelay: 3500,
-              hotSpots: sc.hotSpots || []
-            };
-          });
-
-          panoramaViewer = pannellum.viewer('panorama-360-viewer', {
-            default: {
-              firstScene: initialScene,
-              author: 'Eden Ayurveda Hospital & Google Street View',
-              sceneFadeDuration: 800,
-              compass: true,
-              showZoomCtrl: false,
-              showFullscreenCtrl: false,
-              mouseZoom: true,
-              minHfov: 50,
-              maxHfov: 120,
-              strings: {
-                loadingLabel: 'Loading Walkthrough Scene...'
-              }
-            },
-            scenes: formattedScenes
-          });
-
-          panoramaViewer.on('load', () => {
-            if (overlay) {
-              overlay.style.opacity = '0';
-              setTimeout(() => {
-                overlay.style.display = 'none';
-                if (hint) hint.style.display = 'flex';
-              }, 500);
-            }
-          });
-
-          panoramaViewer.on('scenechange', (sceneId) => {
-            updateActiveSceneTab(sceneId);
-          });
-
-          updateActiveSceneTab(initialScene);
-
-        } catch (e) {
-          console.error('Pannellum walkthrough error:', e);
-        }
-      }
-    }
-
-    function switchTourScene(sceneId) {
-      if (!panoramaViewer) {
-        launch360Tour(sceneId);
-        return;
-      }
-      try {
-        panoramaViewer.loadScene(sceneId);
-        updateActiveSceneTab(sceneId);
-      } catch (e) {
-        console.error('Scene load error:', e);
-      }
-    }
-
-    function updateActiveSceneTab(sceneId) {
-      currentSceneId = sceneId;
-      document.querySelectorAll('.tour-scene-tab').forEach(tab => {
-        tab.classList.toggle('active', tab.id === 'tab-scene-' + sceneId);
-      });
-      const locLabel = document.getElementById('tour-current-location');
-      if (locLabel && scenesData[sceneId]) {
-        locLabel.textContent = scenesData[sceneId].shortName;
-      }
-    }
-
-    function toggle360Rotate() {
-      if (!panoramaViewer) return;
-      const btn = document.getElementById('btn-360-rotate');
-      if (isAutoRotating) {
-        panoramaViewer.stopAutoRotate();
-        isAutoRotating = false;
-        if (btn) btn.innerHTML = '▶ Spin 360°';
-      } else {
-        panoramaViewer.startAutoRotate(-1.5);
-        isAutoRotating = true;
-        if (btn) btn.innerHTML = '⏸ Pause Spin';
-      }
-    }
-
-    function zoom360(delta) {
-      if (!panoramaViewer) return;
-      const current = panoramaViewer.getHfov();
-      panoramaViewer.setHfov(Math.max(50, Math.min(120, current + delta)));
-    }
-
-    function reset360View() {
-      if (!panoramaViewer) return;
-      const sc = scenesData[currentSceneId] || { pitch: 0, yaw: 175, hfov: 100 };
-      panoramaViewer.setPitch(sc.pitch || 0);
-      panoramaViewer.setYaw(sc.yaw || 0);
-      panoramaViewer.setHfov(sc.hfov || 100);
-    }
-
-    function fullscreen360() {
-      if (!panoramaViewer) return;
-      panoramaViewer.toggleFullscreen();
-    }
+    });
 
     // ============================================
     // LOADING SCREEN
