@@ -12,12 +12,13 @@ class GoogleStreetViewWalkthrough {
     this.latitude = options.latitude || 10.8209446;
     this.longitude = options.longitude || 76.8118097;
     this.heading = options.heading !== undefined ? options.heading : 179.12;
-    this.pitch = options.pitch !== undefined ? options.pitch : 0;
-    this.fov = options.fov || 0.75;
+    this.pitch = options.pitch !== undefined ? options.pitch : -3.83;
+    // 0.4000000000000002 is Google Maps' exact default wide-angle unzoomed field of view
+    this.fov = options.fov || 0.4000000000000002;
     this.panoId = options.panoId || 'CIABIhAxgiiDkVySYleKfYLIizXI';
     this.googleMapsUrl = options.googleMapsUrl || 'https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,179.12h,86.17t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi3.8343052273591383-ya4.122231998164352-ro0-fo100!7i11904!8i5952?entry=ttu';
     
-    // Construct Google Maps native embed URL for Street View walkthrough
+    // Construct Google Maps native embed URL for Street View walkthrough matching Google Maps defaults
     this.embedUrl = options.embedUrl || `https://www.google.com/maps/embed?pb=!4v1724427000000!6m8!1m7!1s${this.panoId}!2m2!1d${this.latitude}!2d${this.longitude}!3f${this.heading}!4f${this.pitch}!5f${this.fov}`;
 
     this.init();
@@ -47,10 +48,10 @@ class GoogleStreetViewWalkthrough {
           </div>
         </div>
 
-        <div class="gmp-streetview-viewport" id="${this.containerId}-viewport">
+        <div class="gmp-streetview-viewport" id="${this.containerId}-viewport" style="background: url('images/walayar_360_cover.jpg') center/cover no-repeat;">
           <div class="gmp-loading-skeleton" id="${this.containerId}-skeleton">
             <div class="gmp-skeleton-spinner"></div>
-            <span>Loading 360° Street View Walkthrough...</span>
+            <span>Connecting to Google 360° Street View...</span>
           </div>
 
           <iframe
@@ -61,14 +62,13 @@ class GoogleStreetViewWalkthrough {
             height="100%"
             style="border:0; width:100%; height:100%; position:absolute; inset:0; z-index:2;"
             allowfullscreen=""
-            loading="lazy"
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
       </div>
     `;
 
-    // Hide skeleton when iframe finishes loading
+    // Hide skeleton smoothly when iframe finishes loading
     const iframe = document.getElementById(`${this.containerId}-iframe`);
     const skeleton = document.getElementById(`${this.containerId}-skeleton`);
     if (iframe && skeleton) {
