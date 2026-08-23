@@ -4333,6 +4333,105 @@
       100% { opacity: 0; }
     }
 
+    /* Walkthrough Scenes Ribbon */
+    .tour-scenes-ribbon {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      padding: 0.85rem 1.4rem;
+      background: rgba(10, 22, 15, 0.95);
+      border-top: 1px solid rgba(168, 197, 160, 0.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .tour-scenes-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tour-scenes-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tour-scene-tab {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-secondary);
+      font-size: 0.76rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .tour-scene-tab:hover {
+      background: rgba(168, 197, 160, 0.2);
+      border-color: var(--accent-light);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .tour-scene-tab.active {
+      background: var(--accent);
+      border-color: var(--accent-light);
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 0 12px rgba(168, 197, 160, 0.35);
+    }
+
+    /* Custom Pannellum Hotspot & Navigation Arrow Styling */
+    .pnlm-hotspot-base.pnlm-scene {
+      background-color: rgba(74, 222, 128, 0.9) !important;
+      border: 2.5px solid #ffffff !important;
+      box-shadow: 0 0 16px rgba(74, 222, 128, 0.9), 0 0 0 4px rgba(74, 222, 128, 0.35) !important;
+      width: 28px !important;
+      height: 28px !important;
+      border-radius: 50% !important;
+      animation: hotspotPulse 2.2s infinite ease-in-out !important;
+      cursor: pointer !important;
+      transition: transform 0.2s ease !important;
+    }
+
+    .pnlm-hotspot-base.pnlm-scene:hover {
+      transform: scale(1.3) !important;
+      background-color: #ffffff !important;
+      border-color: #4ade80 !important;
+    }
+
+    @keyframes hotspotPulse {
+      0% { transform: scale(0.92); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.8); }
+      70% { transform: scale(1.18); box-shadow: 0 0 0 12px rgba(74, 222, 128, 0); }
+      100% { transform: scale(0.92); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+    }
+
+    .pnlm-tooltip span {
+      background: rgba(10, 22, 15, 0.94) !important;
+      border: 1px solid rgba(168, 197, 160, 0.45) !important;
+      color: #eef4ec !important;
+      font-family: inherit !important;
+      font-size: 0.82rem !important;
+      font-weight: 500 !important;
+      padding: 0.45rem 0.85rem !important;
+      border-radius: 8px !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6) !important;
+      white-space: nowrap !important;
+    }
+
     .tour-bottom-actions {
       display: flex;
       align-items: center;
@@ -5463,8 +5562,8 @@
         <!-- Portal Top Bar -->
         <div class="tour-portal-bar">
           <div class="tour-location-tag">
-            <span class="badge">LIVE 360°</span>
-            <strong>Eden Ayurveda Hospital & Pharmacy</strong>
+            <span class="badge">VIRTUAL WALKTHROUGH</span>
+            <strong id="tour-current-location">Campus Entrance & Pharmacy</strong>
             <span style="color:var(--text-muted);font-size:0.8rem;">· Walayar (HO), Palakkad, Kerala</span>
           </div>
           <div class="tour-controls-bar">
@@ -5494,21 +5593,21 @@
           <div id="panorama-cover-overlay" class="tour-cover-overlay">
             <div class="tour-cover-content">
               <div class="tour-360-badge" style="margin-bottom:0.8rem;">
-                <span class="tour-pulse-dot"></span> Google Street View 360° Photosphere
+                <span class="tour-pulse-dot"></span> Interactive Google Street View Walkthrough
               </div>
               <h3 class="tour-cover-heading">
-                Step Inside Our Walayar Hospital Grounds
+                Step Inside & Walk Around Our Walayar Hospital
               </h3>
               <p class="tour-cover-desc">
-                Experience an interactive 360° walk through our main campus. Streams on-demand directly via Google's cloud edge servers without slowing down your page.
+                Walk through the entrance, traditional gateway, pharmacy, treatment suites, and herbal garden. Click the in-scene arrows or use the walkthrough tabs below to move between locations.
               </p>
-              <button class="btn-primary" onclick="launch360Tour()" id="btn-launch-360" style="margin:0 auto;cursor:pointer;box-shadow:0 8px 30px rgba(168,197,160,0.3);">
-                <span>🌐</span> Stream Interactive 360° Tour
+              <button class="btn-primary" onclick="launch360Tour('entrance')" id="btn-launch-360" style="margin:0 auto;cursor:pointer;box-shadow:0 8px 30px rgba(168,197,160,0.3);">
+                <span>🚶</span> Start Virtual Walkthrough Tour
               </button>
               <div style="margin-top:1.2rem;">
                 <a href="https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,175h,90t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi0-ya0-ro0-fo100!7i11904!8i5952?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:0.82rem;text-decoration:underline;">
-                  Or open full view in Google Maps app ↗
+                  Or open full walkthrough in Google Maps app ↗
                 </a>
               </div>
             </div>
@@ -5516,7 +5615,31 @@
 
           <!-- Interactive Drag Hint -->
           <div class="tour-hints-overlay" id="tour-hint" style="display:none;">
-            <span>👆 Drag to rotate 360° · Scroll to zoom · Click Fullscreen for full immersion</span>
+            <span>👆 Drag to look 360° · Click green pulsating circles on the ground to walk to next area</span>
+          </div>
+        </div>
+
+        <!-- Property Walkthrough Navigation Ribbon -->
+        <div class="tour-scenes-ribbon">
+          <div class="tour-scenes-title">
+            <span>🚶 Walk to Location:</span>
+          </div>
+          <div class="tour-scenes-buttons">
+            <button class="tour-scene-tab active" id="tab-scene-entrance" onclick="switchTourScene('entrance')">
+              🏛️ Main Entrance & Highway
+            </button>
+            <button class="tour-scene-tab" id="tab-scene-gate" onclick="switchTourScene('gate')">
+              ⛩️ Traditional Gateway
+            </button>
+            <button class="tour-scene-tab" id="tab-scene-pharmacy" onclick="switchTourScene('pharmacy')">
+              🌿 Herbal Pharmacy
+            </button>
+            <button class="tour-scene-tab" id="tab-scene-treatment_rooms" onclick="switchTourScene('treatment_rooms')">
+              🛏️ Treatment Suites
+            </button>
+            <button class="tour-scene-tab" id="tab-scene-garden" onclick="switchTourScene('garden')">
+              🍃 Herbal Sanctuary
+            </button>
           </div>
         </div>
       </div>
@@ -5936,12 +6059,143 @@
   <script src="vendor/pannellum.js"></script>
   <script>
     // ============================================
-    // 360° VIRTUAL TOUR PANORAMA VIEWER (CLOUD STREAMING API)
+    // 360° VIRTUAL WALKTHROUGH TOUR (MULTI-SCENE + HOTSPOTS)
     // ============================================
     let panoramaViewer = null;
     let isAutoRotating = true;
+    let currentSceneId = 'entrance';
 
-    function launch360Tour() {
+    const scenesData = {
+      entrance: {
+        shortName: 'Campus Entrance & Highway View',
+        title: 'Eden Ayurveda Hospital — Walayar Campus Entrance & Highway',
+        panorama: 'https://lh3.googleusercontent.com/gpms-cs-s/AFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0=w1800-h900',
+        pitch: -2,
+        yaw: 175,
+        hfov: 105,
+        hotSpots: [
+          {
+            pitch: -6,
+            yaw: 175,
+            type: 'scene',
+            text: 'Walk into Traditional Gateway & Treatment Block →',
+            sceneId: 'gate'
+          },
+          {
+            pitch: 0,
+            yaw: 135,
+            type: 'scene',
+            text: 'Step to Herbal Pharmacy & Dispensary →',
+            sceneId: 'pharmacy'
+          }
+        ]
+      },
+      gate: {
+        shortName: 'Traditional Gateway & Healing Courtyard',
+        title: 'Hospital Traditional Gateway & Healing Courtyard',
+        panorama: 'images/hero_sanctuary.jpg',
+        pitch: 0,
+        yaw: 0,
+        hfov: 100,
+        hotSpots: [
+          {
+            pitch: -6,
+            yaw: 180,
+            type: 'scene',
+            text: '← Walk Back to Highway Entrance',
+            sceneId: 'entrance'
+          },
+          {
+            pitch: -3,
+            yaw: 45,
+            type: 'scene',
+            text: 'Walk to Classical Pharmacy & Reception →',
+            sceneId: 'pharmacy'
+          },
+          {
+            pitch: -2,
+            yaw: -45,
+            type: 'scene',
+            text: 'Walk to Private Treatment Suites →',
+            sceneId: 'treatment_rooms'
+          }
+        ]
+      },
+      pharmacy: {
+        shortName: 'Classical Herbal Pharmacy & Rasashala',
+        title: 'Eden Ayurveda Classical Medicine Preparation & Dispensary',
+        panorama: 'images/wellness_pharmacy.jpg',
+        pitch: 0,
+        yaw: 0,
+        hfov: 100,
+        hotSpots: [
+          {
+            pitch: -6,
+            yaw: 180,
+            type: 'scene',
+            text: '← Return to Main Entrance',
+            sceneId: 'entrance'
+          },
+          {
+            pitch: -2,
+            yaw: 55,
+            type: 'scene',
+            text: 'Walk to Treatment Suites & Droni Rooms →',
+            sceneId: 'treatment_rooms'
+          }
+        ]
+      },
+      treatment_rooms: {
+        shortName: 'Private Treatment Suites & Droni Rooms',
+        title: 'Serene Private Ayurvedic Treatment Suites & Teak Droni Room',
+        panorama: 'images/wellness_rooms.jpg',
+        pitch: 0,
+        yaw: 0,
+        hfov: 100,
+        hotSpots: [
+          {
+            pitch: -6,
+            yaw: 180,
+            type: 'scene',
+            text: '← Back to Traditional Gateway',
+            sceneId: 'gate'
+          },
+          {
+            pitch: -3,
+            yaw: 60,
+            type: 'scene',
+            text: 'Step Outside to Herbal Sanctuary & Yoga Pavilion →',
+            sceneId: 'garden'
+          }
+        ]
+      },
+      garden: {
+        shortName: 'Herbal Garden & Yoga Sanctuary',
+        title: 'Medicinal Botanical Garden & Sunrise Yoga Pavilion',
+        panorama: 'images/wellness_nature.jpg',
+        pitch: 0,
+        yaw: 0,
+        hfov: 100,
+        hotSpots: [
+          {
+            pitch: -6,
+            yaw: 180,
+            type: 'scene',
+            text: '← Return to Treatment Suites',
+            sceneId: 'treatment_rooms'
+          },
+          {
+            pitch: -4,
+            yaw: 110,
+            type: 'scene',
+            text: 'Walk to Main Campus Entrance Gate →',
+            sceneId: 'entrance'
+          }
+        ]
+      }
+    };
+
+    function launch360Tour(initialScene = 'entrance') {
       const overlay = document.getElementById('panorama-cover-overlay');
       const btn = document.getElementById('btn-launch-360');
       const hint = document.getElementById('tour-hint');
@@ -5958,31 +6212,41 @@
         if (el) el.style.display = 'inline-flex';
       });
 
-      // Google Cloud CDN optimized API stream URL (high-speed edge cache, ~300KB)
-      const cloudPanoUrl = 'https://lh3.googleusercontent.com/gpms-cs-s/AFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0=w1800-h900';
-
       if (typeof pannellum !== 'undefined') {
         try {
+          const formattedScenes = {};
+          Object.keys(scenesData).forEach(key => {
+            const sc = scenesData[key];
+            formattedScenes[key] = {
+              title: sc.title,
+              type: 'equirectangular',
+              panorama: sc.panorama,
+              pitch: sc.pitch || 0,
+              yaw: sc.yaw || 0,
+              hfov: sc.hfov || 100,
+              autoLoad: true,
+              autoRotate: -1.5,
+              autoRotateInactivityDelay: 3500,
+              hotSpots: sc.hotSpots || []
+            };
+          });
+
           panoramaViewer = pannellum.viewer('panorama-360-viewer', {
-            type: 'equirectangular',
-            panorama: cloudPanoUrl,
-            autoLoad: true,
-            autoRotate: -1.8,
-            autoRotateInactivityDelay: 3500,
-            compass: true,
-            showZoomCtrl: false,
-            showFullscreenCtrl: false,
-            mouseZoom: true,
-            hfov: 100,
-            minHfov: 50,
-            maxHfov: 120,
-            pitch: 0,
-            yaw: 175,
-            title: 'Eden Ayurveda Hospital & Pharmacy — Walayar, Palakkad',
-            author: 'Google Street View',
-            strings: {
-              loadingLabel: 'Streaming 360° Photosphere from Google Cloud...'
-            }
+            default: {
+              firstScene: initialScene,
+              author: 'Eden Ayurveda Hospital & Google Street View',
+              sceneFadeDuration: 800,
+              compass: true,
+              showZoomCtrl: false,
+              showFullscreenCtrl: false,
+              mouseZoom: true,
+              minHfov: 50,
+              maxHfov: 120,
+              strings: {
+                loadingLabel: 'Loading Walkthrough Scene...'
+              }
+            },
+            scenes: formattedScenes
           });
 
           panoramaViewer.on('load', () => {
@@ -5995,32 +6259,39 @@
             }
           });
 
-          panoramaViewer.on('error', () => {
-            // Fallback to local image if CDN or CORS is blocked
-            console.warn('Falling back to local 360 asset');
-            if (panoramaViewer) {
-              panoramaViewer.destroy();
-            }
-            panoramaViewer = pannellum.viewer('panorama-360-viewer', {
-              type: 'equirectangular',
-              panorama: 'images/walayar_360_panorama.jpg',
-              autoLoad: true,
-              autoRotate: -1.8,
-              showZoomCtrl: false,
-              showFullscreenCtrl: false,
-              mouseZoom: true
-            });
-            if (overlay) {
-              overlay.style.opacity = '0';
-              setTimeout(() => {
-                overlay.style.display = 'none';
-                if (hint) hint.style.display = 'flex';
-              }, 500);
-            }
+          panoramaViewer.on('scenechange', (sceneId) => {
+            updateActiveSceneTab(sceneId);
           });
+
+          updateActiveSceneTab(initialScene);
+
         } catch (e) {
-          console.error('Pannellum error:', e);
+          console.error('Pannellum walkthrough error:', e);
         }
+      }
+    }
+
+    function switchTourScene(sceneId) {
+      if (!panoramaViewer) {
+        launch360Tour(sceneId);
+        return;
+      }
+      try {
+        panoramaViewer.loadScene(sceneId);
+        updateActiveSceneTab(sceneId);
+      } catch (e) {
+        console.error('Scene load error:', e);
+      }
+    }
+
+    function updateActiveSceneTab(sceneId) {
+      currentSceneId = sceneId;
+      document.querySelectorAll('.tour-scene-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.id === 'tab-scene-' + sceneId);
+      });
+      const locLabel = document.getElementById('tour-current-location');
+      if (locLabel && scenesData[sceneId]) {
+        locLabel.textContent = scenesData[sceneId].shortName;
       }
     }
 
@@ -6032,7 +6303,7 @@
         isAutoRotating = false;
         if (btn) btn.innerHTML = '▶ Spin 360°';
       } else {
-        panoramaViewer.startAutoRotate(-1.8);
+        panoramaViewer.startAutoRotate(-1.5);
         isAutoRotating = true;
         if (btn) btn.innerHTML = '⏸ Pause Spin';
       }
@@ -6046,9 +6317,10 @@
 
     function reset360View() {
       if (!panoramaViewer) return;
-      panoramaViewer.setPitch(0);
-      panoramaViewer.setYaw(175);
-      panoramaViewer.setHfov(100);
+      const sc = scenesData[currentSceneId] || { pitch: 0, yaw: 175, hfov: 100 };
+      panoramaViewer.setPitch(sc.pitch || 0);
+      panoramaViewer.setYaw(sc.yaw || 0);
+      panoramaViewer.setHfov(sc.hfov || 100);
     }
 
     function fullscreen360() {
