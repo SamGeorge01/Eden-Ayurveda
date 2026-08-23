@@ -14,7 +14,7 @@
   <title>Eden Ayurveda Hospital | Heal Naturally, Live Wholly</title>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.edenayurvedahospital.com/">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80">
+  <meta property="og:image" content="images/hero_sanctuary.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Eden Ayurveda Hospital | Heal Naturally, Live Wholly">
   <meta name="twitter:description"
@@ -76,6 +76,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="vendor/pannellum.css">
 
   <style>
     /* ============================================
@@ -2828,11 +2829,11 @@
     .hero-bg-img {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1800&q=60');
+      background-image: url('images/hero_bg.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      opacity: 0.05;
+      opacity: 0.08;
       z-index: 0;
     }
 
@@ -4104,6 +4105,255 @@
         padding: 0 1.2rem;
       }
     }
+
+    /* ============================================
+       360° VIRTUAL TOUR PORTAL
+    ============================================ */
+    #virtual-tour {
+      padding: 100px 0;
+      background: radial-gradient(circle at 50% 30%, rgba(20, 35, 25, 0.95), var(--bg-primary) 70%);
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    #virtual-tour::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(168, 197, 160, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .tour-portal-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tour-header-center {
+      text-align: center;
+      max-width: 750px;
+      margin: 0 auto 3rem;
+    }
+
+    .tour-360-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(168, 197, 160, 0.12);
+      border: 1px solid rgba(168, 197, 160, 0.3);
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.2rem;
+    }
+
+    .tour-pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #4ade80;
+      animation: tourPulse 2s infinite;
+    }
+
+    @keyframes tourPulse {
+      0% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+      70% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+      100% { transform: scale(0.95); opacity: 0.7; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+    }
+
+    .tour-portal-frame {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(168, 197, 160, 0.2);
+      background: #08110b;
+    }
+
+    .tour-portal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.4rem;
+      background: rgba(13, 26, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(168, 197, 160, 0.15);
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .tour-location-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .tour-location-tag span.badge {
+      background: var(--gold-subtle);
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .tour-controls-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .tour-ctrl-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-primary);
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+
+    .tour-ctrl-btn:hover {
+      background: rgba(168, 197, 160, 0.2);
+      border-color: var(--accent-light);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .tour-ctrl-btn.active {
+      background: var(--accent);
+      border-color: var(--accent-light);
+      color: #fff;
+    }
+
+    #panorama-360-viewer {
+      width: 100%;
+      height: 560px;
+      background: #0d1a12;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      #panorama-360-viewer {
+        height: 400px;
+      }
+    }
+
+    .tour-hints-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(8, 17, 11, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(168, 197, 160, 0.25);
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 5;
+      animation: fadeOutHint 8s forwards;
+      white-space: nowrap;
+    }
+
+    @keyframes fadeOutHint {
+      0%, 70% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .tour-bottom-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      padding: 1.2rem 1.6rem;
+      background: rgba(18, 36, 25, 0.6);
+      border: 1px solid rgba(168, 197, 160, 0.15);
+      border-radius: 14px;
+    }
+
+    .tour-info-summary {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    .tour-info-summary strong {
+      color: var(--text-primary);
+    }
+
+    .tour-action-btns {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-maps-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #1a73e8, #1557b0);
+      color: #fff !important;
+      font-weight: 500;
+      font-size: 0.82rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
+    }
+
+    .btn-maps-link:hover {
+      background: linear-gradient(135deg, #2b7de9, #1a62c7);
+      box-shadow: 0 6px 20px rgba(26, 115, 232, 0.5);
+      transform: translateY(-2px);
+      color: #fff !important;
+    }
+
+    .nav-360-badge {
+      background: linear-gradient(135deg, var(--gold), #b89428);
+      color: #0b150f !important;
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      margin-left: 0.2rem;
+      letter-spacing: 0.04em;
+      display: inline-block;
+      vertical-align: middle;
+    }
   </style>
 </head>
 
@@ -4132,6 +4382,7 @@
         <a href="#about">About</a>
         <a href="#treatments">Treatments</a>
         <a href="#medical-tourism">Medical Tourism</a>
+        <a href="#virtual-tour">360° Tour <span class="nav-360-badge">360°</span></a>
         <a href="#doctors">Doctors</a>
         <a href="#health-cards">Health Cards</a>
         <a href="#packages">Packages</a>
@@ -4152,6 +4403,7 @@
     <a href="#about" onclick="closeMobile()">About</a>
     <a href="#treatments" onclick="closeMobile()">Treatments</a>
     <a href="#medical-tourism" onclick="closeMobile()">Medical Tourism</a>
+    <a href="#virtual-tour" onclick="closeMobile()">360° Virtual Tour</a>
     <a href="#doctors" onclick="closeMobile()">Doctors</a>
     <a href="#health-cards" onclick="closeMobile()">Health Cards</a>
     <a href="#packages" onclick="closeMobile()">Packages</a>
@@ -4167,8 +4419,8 @@
     <div class="hero-particles" id="particles"></div>
     <div class="hero-visual">
       <img class="hero-visual-img"
-        src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=60"
-        alt="Ayurveda healing">
+        src="images/hero_sanctuary.jpg"
+        alt="Eden Ayurveda Hospital and authentic healing sanctuary in Kerala">
       <div class="hero-visual-overlay"></div>
       <svg class="hero-botanical" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Main stem -->
@@ -4269,13 +4521,13 @@
           <div class="about-image-stack">
             <div class="about-img-main">
               <img class="real-img"
-                src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=700&q=80"
-                alt="Ayurveda massage therapy at Eden Ayurveda Hospital" loading="lazy">
+                src="images/about_massage.jpg"
+                alt="Authentic Kerala Abhyanga massage therapy at Eden Ayurveda Hospital" loading="lazy">
             </div>
             <div class="about-img-secondary">
               <img class="real-img"
-                src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=80"
-                alt="Yoga and meditation at Eden Ayurveda" loading="lazy">
+                src="images/about_yoga.jpg"
+                alt="Morning yoga and meditation in Kerala sanctuary at Eden Ayurveda" loading="lazy">
             </div>
             <div class="about-badge">
               <div class="about-badge-num">10+</div>
@@ -4353,8 +4605,8 @@
         <!-- THERAPEUTIC -->
         <div class="treatment-card reveal" data-category="therapeutic">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=75"
-              alt="Abhyanga massage" loading="lazy">
+            <img src="images/treatment_abhyanga.jpg"
+              alt="Authentic Kerala Abhyanga full body massage" loading="lazy">
             <span class="treatment-card-tag">Therapeutic</span>
           </div>
           <div class="treatment-card-body">
@@ -4371,8 +4623,8 @@
 
         <div class="treatment-card reveal" data-category="therapeutic">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=600&q=75"
-              alt="Potli therapy" loading="lazy">
+            <img src="images/treatment_potli.jpg"
+              alt="Authentic Kizhi / Potli herbal pouch therapy" loading="lazy">
             <span class="treatment-card-tag">Therapeutic</span>
           </div>
           <div class="treatment-card-body">
@@ -4389,8 +4641,8 @@
 
         <div class="treatment-card reveal" data-category="therapeutic">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=75"
-              alt="Udvartana powder massage" loading="lazy">
+            <img src="images/treatment_udvartana.jpg"
+              alt="Authentic Udvartana dry herbal powder scrub massage" loading="lazy">
             <span class="treatment-card-tag">Therapeutic</span>
           </div>
           <div class="treatment-card-body">
@@ -4406,8 +4658,8 @@
 
         <div class="treatment-card reveal" data-category="therapeutic">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=600&q=75"
-              alt="Dhara stream therapy" loading="lazy">
+            <img src="images/treatment_dhara.jpg"
+              alt="Authentic Shirodhara forehead medicated oil stream therapy" loading="lazy">
             <span class="treatment-card-tag">Therapeutic</span>
           </div>
           <div class="treatment-card-body">
@@ -4424,8 +4676,8 @@
 
         <div class="treatment-card reveal" data-category="therapeutic">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=75"
-              alt="Upanaha herbal paste" loading="lazy">
+            <img src="images/treatment_upanaha.jpg"
+              alt="Authentic Upanaha warm herbal paste bandage therapy" loading="lazy">
             <span class="treatment-card-tag">Therapeutic</span>
           </div>
           <div class="treatment-card-body">
@@ -4441,8 +4693,8 @@
 
         <div class="treatment-card reveal" data-category="therapeutic">
           <div class="treatment-card-img">
-            <img src="netra_chikitsa.png"
-              alt="Netra Chikitsa eye care" loading="lazy">
+            <img src="images/treatment_netra.png"
+              alt="Authentic Netra Chikitsa eye care and Tarpana therapy" loading="lazy">
             <span class="treatment-card-tag">Therapeutic</span>
           </div>
           <div class="treatment-card-body">
@@ -4458,8 +4710,8 @@
 
         <div class="treatment-card reveal" data-category="therapeutic">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&w=600&q=75"
-              alt="Janu Kati Vasti joint therapy" loading="lazy">
+            <img src="images/treatment_vasti_joint.jpg"
+              alt="Authentic Janu / Kati / Greeva Vasti warm oil reservoir therapy" loading="lazy">
             <span class="treatment-card-tag">Therapeutic</span>
           </div>
           <div class="treatment-card-body">
@@ -4477,8 +4729,8 @@
         <!-- PANCHAKARMA -->
         <div class="treatment-card reveal" data-category="panchakarma">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=600&q=75"
-              alt="Vamana Panchakarma" loading="lazy">
+            <img src="images/treatment_vamana.jpg"
+              alt="Authentic Panchakarma Vamana herbal emesis preparation" loading="lazy">
             <span class="treatment-card-tag">Panchakarma</span>
           </div>
           <div class="treatment-card-body">
@@ -4494,8 +4746,8 @@
 
         <div class="treatment-card reveal" data-category="panchakarma">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=75"
-              alt="Virechana herbal purgation" loading="lazy">
+            <img src="images/treatment_virechana.jpg"
+              alt="Authentic Virechana Pitta detox herbal oils and Triphala" loading="lazy">
             <span class="treatment-card-tag">Panchakarma</span>
           </div>
           <div class="treatment-card-body">
@@ -4511,8 +4763,8 @@
 
         <div class="treatment-card reveal" data-category="panchakarma">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=75"
-              alt="Vasti medicated enema" loading="lazy">
+            <img src="images/treatment_vasti_panchakarma.jpg"
+              alt="Authentic Panchakarma Vasti classical therapy preparation" loading="lazy">
             <span class="treatment-card-tag">Panchakarma</span>
           </div>
           <div class="treatment-card-body">
@@ -4529,8 +4781,8 @@
 
         <div class="treatment-card reveal" data-category="panchakarma">
           <div class="treatment-card-img">
-            <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=600&q=75"
-              alt="Nasya nasal therapy" loading="lazy">
+            <img src="images/treatment_nasya.jpg"
+              alt="Authentic Nasya nasal herbal oil therapy" loading="lazy">
             <span class="treatment-card-tag">Panchakarma</span>
           </div>
           <div class="treatment-card-body">
@@ -4713,8 +4965,8 @@
     <div class="wellness-grid">
       <div class="wellness-cell" onclick="openLightbox(0)">
         <img class="wellness-cell-img"
-          src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1000&q=75"
-          alt="Kerala Ayurveda healing environment" loading="lazy">
+          src="images/wellness_nature.jpg"
+          alt="Lush Kerala Ayurvedic healing sanctuary environment" loading="lazy">
         <div class="wellness-cell-overlay">
           <div class="wellness-cell-title">Nature-Immersed Healing</div>
           <div class="wellness-cell-sub">Lush Kerala greenery surrounds every treatment</div>
@@ -4722,8 +4974,8 @@
       </div>
       <div class="wellness-cell" onclick="openLightbox(1)">
         <img class="wellness-cell-img"
-          src="https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=600&q=75"
-          alt="Shirodhara oil therapy" loading="lazy">
+          src="images/wellness_shirodhara.jpg"
+          alt="Traditional Shirodhara forehead oil therapy" loading="lazy">
         <div class="wellness-cell-overlay">
           <div class="wellness-cell-title">Shirodhara</div>
           <div class="wellness-cell-sub">The deeply meditative oil therapy</div>
@@ -4731,8 +4983,8 @@
       </div>
       <div class="wellness-cell" onclick="openLightbox(2)">
         <img class="wellness-cell-img"
-          src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=75"
-          alt="Sunrise yoga sessions" loading="lazy">
+          src="images/wellness_yoga.jpg"
+          alt="Morning sunrise yoga and meditation sessions" loading="lazy">
         <div class="wellness-cell-overlay">
           <div class="wellness-cell-title">Sunrise Yoga</div>
           <div class="wellness-cell-sub">Daily practice for mind-body alignment</div>
@@ -4740,8 +4992,8 @@
       </div>
       <div class="wellness-cell" onclick="openLightbox(3)">
         <img class="wellness-cell-img"
-          src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=75"
-          alt="Herbal pharmacy and medicines" loading="lazy">
+          src="images/wellness_pharmacy.jpg"
+          alt="Authentic Ayurvedic herbal pharmacy and classical preparations" loading="lazy">
         <div class="wellness-cell-overlay">
           <div class="wellness-cell-title">Herbal Pharmacy</div>
           <div class="wellness-cell-sub">Freshly prepared classical formulations</div>
@@ -4749,8 +5001,8 @@
       </div>
       <div class="wellness-cell" onclick="openLightbox(4)">
         <img class="wellness-cell-img"
-          src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=75"
-          alt="Private Ayurveda treatment rooms" loading="lazy">
+          src="images/wellness_rooms.jpg"
+          alt="Private authentic Ayurvedic treatment rooms with teakwood Droni" loading="lazy">
         <div class="wellness-cell-overlay">
           <div class="wellness-cell-title">Treatment Rooms</div>
           <div class="wellness-cell-sub">Serene, private healing spaces</div>
@@ -5145,6 +5397,85 @@
     </div>
   </section>
 
+  <!-- ============ 360° VIRTUAL TOUR PORTAL ============ -->
+  <section id="virtual-tour">
+    <div class="container tour-portal-wrapper">
+      <div class="tour-header-center">
+        <div class="tour-360-badge reveal">
+          <span class="tour-pulse-dot"></span>
+          Interactive 360° Virtual Experience
+        </div>
+        <h2 class="section-title reveal">
+          Explore Our Walayar Hospital<br><em>in Immersive 360° View</em>
+        </h2>
+        <div class="divider reveal" style="margin: 1.2rem auto;"></div>
+        <p class="section-subtitle reveal" style="margin: 0 auto;">
+          Experience our main hospital campus at Kannalpirivu, Walayar, Palakkad — the gateway to Kerala. Click and drag to look around in 360°, inspect the hospital grounds, traditional pharmacy, and mountain backdrop.
+        </p>
+      </div>
+
+      <div class="tour-portal-frame reveal">
+        <!-- Portal Top Bar -->
+        <div class="tour-portal-bar">
+          <div class="tour-location-tag">
+            <span class="badge">LIVE 360°</span>
+            <strong>Eden Ayurveda Hospital & Pharmacy</strong>
+            <span style="color:var(--text-muted);font-size:0.8rem;">· Walayar (HO), Palakkad, Kerala</span>
+          </div>
+          <div class="tour-controls-bar">
+            <button class="tour-ctrl-btn" id="btn-360-rotate" onclick="toggle360Rotate()" title="Toggle Auto-Spin">
+              ⏸ Pause Spin
+            </button>
+            <button class="tour-ctrl-btn" onclick="zoom360(-15)" title="Zoom In">
+              🔍+
+            </button>
+            <button class="tour-ctrl-btn" onclick="zoom360(15)" title="Zoom Out">
+              🔍-
+            </button>
+            <button class="tour-ctrl-btn" onclick="reset360View()" title="Reset View">
+              ↺ Reset
+            </button>
+            <button class="tour-ctrl-btn" onclick="fullscreen360()" title="Toggle Fullscreen">
+              ⛶ Fullscreen
+            </button>
+          </div>
+        </div>
+
+        <!-- 360 Panorama Container -->
+        <div id="panorama-360-viewer"></div>
+
+        <!-- Interactive Drag Hint -->
+        <div class="tour-hints-overlay" id="tour-hint">
+          <span>👆 Drag to rotate 360° · Scroll to zoom · Click Fullscreen for full immersion</span>
+        </div>
+      </div>
+
+      <!-- Portal Bottom Action Bar -->
+      <div class="tour-bottom-actions reveal">
+        <div class="tour-info-summary">
+          <span style="font-size:1.5rem;">📍</span>
+          <div>
+            <strong>Walayar Head Office:</strong> Kannalpirivu, Walayar, Palakkad, Kerala – 676 824
+            <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.2rem;">Coordinates: 10.8209446° N, 76.8118097° E · NH544 Highway Entrance</div>
+          </div>
+        </div>
+        <div class="tour-action-btns">
+          <a href="https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,175h,90t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi0-ya0-ro0-fo100!7i11904!8i5952?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank" rel="noopener noreferrer" class="btn-maps-link" id="google-maps-360-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Watch 360° on Google Maps ↗
+          </a>
+          <a href="https://wa.me/919061218055?text=Hello%20Eden%20Ayurveda%20Hospital%2C%20I%20saw%20your%20Walayar%20hospital%20360%20tour%20and%20would%20like%20to%20enquire%20about%20treatments."
+            target="_blank" class="btn-outline" style="font-size:0.82rem;padding:0.65rem 1.2rem;">
+            💬 Enquire on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ GALLERY ============ -->
   <section id="gallery">
     <div class="container">
@@ -5153,39 +5484,39 @@
         <h2 class="section-title reveal">A Sanctuary of<br><em>Healing & Serenity</em></h2>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item reveal" onclick="openLightbox(0)" data-caption="Traditional Ayurveda Treatment">
-          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=75"
-            alt="Ayurveda massage therapy" loading="lazy">
+        <div class="gallery-item reveal" onclick="openLightbox(0)" data-caption="Authentic Abhyanga Ayurveda Massage Therapy">
+          <img src="images/gallery_1.jpg"
+            alt="Ayurveda Abhyanga massage therapy" loading="lazy">
           <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
         </div>
-        <div class="gallery-item reveal" onclick="openLightbox(1)" data-caption="Shirodhara Oil Therapy">
-          <img src="https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=500&q=75"
-            alt="Shirodhara forehead oil treatment" loading="lazy">
+        <div class="gallery-item reveal" onclick="openLightbox(1)" data-caption="Shirodhara — Sacred Oil Therapy">
+          <img src="images/gallery_2.jpg"
+            alt="Shirodhara forehead medicated oil treatment" loading="lazy">
           <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
         </div>
-        <div class="gallery-item reveal" onclick="openLightbox(2)" data-caption="Morning Yoga Practice">
-          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=75"
-            alt="Yoga at Eden Ayurveda" loading="lazy">
+        <div class="gallery-item reveal" onclick="openLightbox(2)" data-caption="Morning Yoga & Meditation Practice">
+          <img src="images/gallery_3.jpg"
+            alt="Sunrise yoga at Eden Ayurveda Hospital" loading="lazy">
           <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
         </div>
-        <div class="gallery-item reveal" onclick="openLightbox(3)" data-caption="Herbal Medicine Preparation">
-          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=500&q=75"
-            alt="Herbal medicines and ingredients" loading="lazy">
+        <div class="gallery-item reveal" onclick="openLightbox(3)" data-caption="Classical Herbal Medicine Preparation">
+          <img src="images/gallery_4.jpg"
+            alt="Authentic Ayurvedic herbal pharmacy and preparation" loading="lazy">
           <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal" onclick="openLightbox(4)" data-caption="Kerala Natural Surroundings">
-          <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=900&q=75"
-            alt="Kerala nature and environment" loading="lazy">
+          <img src="images/gallery_5.jpg"
+            alt="Lush Kerala nature and backwaters environment" loading="lazy">
           <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
         </div>
         <div class="gallery-item reveal" onclick="openLightbox(5)" data-caption="Meditation & Inner Peace">
-          <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=500&q=75"
-            alt="Meditation at Eden Ayurveda" loading="lazy">
+          <img src="images/gallery_6.jpg"
+            alt="Peaceful meditation in Kerala nature sanctuary" loading="lazy">
           <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
         </div>
-        <div class="gallery-item reveal" onclick="openLightbox(6)" data-caption="Therapeutic Treatment Session">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=500&q=75"
-            alt="Therapeutic Ayurveda session" loading="lazy">
+        <div class="gallery-item reveal" onclick="openLightbox(6)" data-caption="Therapeutic Joint Therapy Session">
+          <img src="images/gallery_7.jpg"
+            alt="Therapeutic Kati Vasti treatment session" loading="lazy">
           <div class="gallery-overlay"><span class="gallery-overlay-icon">⊕</span></div>
         </div>
       </div>
@@ -5206,8 +5537,8 @@
       <div class="blog-grid">
         <div class="blog-card featured reveal">
           <div class="blog-img">
-            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&q=75"
-              alt="Panchakarma detox guide" loading="lazy">
+            <img src="images/blog_panchakarma.jpg"
+              alt="Panchakarma detox guide and authentic Ayurvedic herbal oils" loading="lazy">
           </div>
           <div class="blog-body">
             <div class="blog-tag">Panchakarma</div>
@@ -5222,8 +5553,8 @@
         </div>
         <div class="blog-card reveal">
           <div class="blog-img">
-            <img src="https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=500&q=75"
-              alt="Shirodhara ancient therapy" loading="lazy">
+            <img src="images/blog_shirodhara.jpg"
+              alt="Shirodhara ancient therapy and continuous oil stream" loading="lazy">
           </div>
           <div class="blog-body">
             <div class="blog-tag">Shirodhara</div>
@@ -5238,13 +5569,13 @@
         </div>
         <div class="blog-card reveal">
           <div class="blog-img">
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=75"
-              alt="Ayurveda arthritis treatment" loading="lazy">
+            <img src="images/blog_arthritis.jpg"
+              alt="Ayurveda arthritis treatment and warm Kizhi therapy" loading="lazy">
           </div>
           <div class="blog-body">
             <div class="blog-tag">Arthritis</div>
             <h3 class="blog-title">How Ayurveda Addresses Rheumatoid Arthritis Beyond Symptom Management</h3>
-            <p class="blog-excerpt">How classical Basti therapy addresses arthritis at its root — not just the symptoms.
+            <p class="blog-excerpt">How classical Basti and Kizhi therapy addresses arthritis at its root — not just the symptoms.
             </p>
             <div class="blog-meta">
               <span>Dr. Senior Physician</span>
@@ -5322,9 +5653,14 @@
                   style="width:100%;height:100%;border:none;">
                 </iframe>
               </div>
-              <a href="https://maps.app.goo.gl/evdhyAUTBPazGK679" target="_blank" rel="noopener" class="location-panel-link">
-                📍 Open Walayar Location in Google Maps →
-              </a>
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;margin-top:0.6rem;">
+                <a href="https://maps.app.goo.gl/evdhyAUTBPazGK679" target="_blank" rel="noopener" class="location-panel-link">
+                  📍 Open in Google Maps →
+                </a>
+                <a href="#virtual-tour" class="location-panel-link" style="color:var(--gold);border-color:rgba(212,175,55,0.4);">
+                  🌐 Watch 360° Virtual Tour ↑
+                </a>
+              </div>
             </div>
             <!-- Palakkad Panel -->
             <div class="location-panel" id="loc-palakkad">
@@ -5526,7 +5862,93 @@
   </div>
 
   <!-- ============ JAVASCRIPT ============ -->
+  <script src="vendor/pannellum.js"></script>
   <script>
+    // ============================================
+    // 360° VIRTUAL TOUR PANORAMA VIEWER
+    // ============================================
+    let panoramaViewer = null;
+    let isAutoRotating = true;
+
+    function initPanoramaViewer() {
+      const container = document.getElementById('panorama-360-viewer');
+      if (!container || panoramaViewer) return;
+
+      if (typeof pannellum !== 'undefined') {
+        try {
+          panoramaViewer = pannellum.viewer('panorama-360-viewer', {
+            type: 'equirectangular',
+            panorama: 'images/walayar_360_panorama.jpg',
+            autoLoad: true,
+            autoRotate: -1.8,
+            autoRotateInactivityDelay: 3500,
+            compass: true,
+            showZoomCtrl: false,
+            showFullscreenCtrl: false,
+            mouseZoom: true,
+            hfov: 100,
+            minHfov: 50,
+            maxHfov: 120,
+            pitch: 0,
+            yaw: 175,
+            title: 'Eden Ayurveda Hospital & Pharmacy — Walayar, Palakkad',
+            author: 'Eden Ayurveda Hospital',
+            strings: {
+              loadingLabel: 'Loading 360° Hospital View...'
+            }
+          });
+        } catch (e) {
+          console.error('Pannellum init error:', e);
+        }
+      }
+    }
+
+    function toggle360Rotate() {
+      if (!panoramaViewer) return;
+      const btn = document.getElementById('btn-360-rotate');
+      if (isAutoRotating) {
+        panoramaViewer.stopAutoRotate();
+        isAutoRotating = false;
+        if (btn) btn.innerHTML = '▶ Spin 360°';
+      } else {
+        panoramaViewer.startAutoRotate(-1.8);
+        isAutoRotating = true;
+        if (btn) btn.innerHTML = '⏸ Pause Spin';
+      }
+    }
+
+    function zoom360(delta) {
+      if (!panoramaViewer) return;
+      const current = panoramaViewer.getHfov();
+      panoramaViewer.setHfov(Math.max(50, Math.min(120, current + delta)));
+    }
+
+    function reset360View() {
+      if (!panoramaViewer) return;
+      panoramaViewer.setPitch(0);
+      panoramaViewer.setYaw(175);
+      panoramaViewer.setHfov(100);
+    }
+
+    function fullscreen360() {
+      if (!panoramaViewer) return;
+      panoramaViewer.toggleFullscreen();
+    }
+
+    // Lazy load the 360 viewer when scrolled into proximity
+    const tourSection = document.getElementById('virtual-tour');
+    if (tourSection) {
+      const tourObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            initPanoramaViewer();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '200px 0px' });
+      tourObserver.observe(tourSection);
+    }
+
     // ============================================
     // LOADING SCREEN
     // ============================================
@@ -5703,13 +6125,13 @@
     // GALLERY LIGHTBOX
     // ============================================
     const lightboxImages = [
-      { src: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1400&q=85', caption: 'Authentic Ayurveda Massage Therapy' },
-      { src: 'https://images.unsplash.com/photo-1619975101918-6d27886e8c6a?auto=format&fit=crop&w=1400&q=85', caption: 'Shirodhara — Sacred Oil Therapy' },
-      { src: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1400&q=85', caption: 'Morning Yoga & Meditation Practice' },
-      { src: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1400&q=85', caption: 'Classical Herbal Medicine Preparation' },
-      { src: 'https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=1400&q=85', caption: 'Kerala Natural Healing Environment' },
-      { src: 'https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=1400&q=85', caption: 'Deep Meditation & Inner Peace' },
-      { src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1400&q=85', caption: 'Personalized Therapeutic Treatment' },
+      { src: 'images/gallery_1.jpg', caption: 'Authentic Abhyanga Ayurveda Massage Therapy' },
+      { src: 'images/gallery_2.jpg', caption: 'Shirodhara — Sacred Warm Medicated Oil Therapy' },
+      { src: 'images/gallery_3.jpg', caption: 'Morning Yoga & Meditation in Kerala Nature Sanctuary' },
+      { src: 'images/gallery_4.jpg', caption: 'Classical Herbal Medicine Preparation & Pharmacy' },
+      { src: 'images/gallery_5.jpg', caption: 'Kerala Natural Surroundings & Serene Backwaters' },
+      { src: 'images/gallery_6.jpg', caption: 'Deep Meditation & Inner Peace at Eden Ayurveda' },
+      { src: 'images/gallery_7.jpg', caption: 'Therapeutic Kati Vasti & Joint Care Treatment' },
     ];
     let currentLightboxIndex = 0;
 
