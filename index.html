@@ -4249,16 +4249,61 @@
       color: #fff;
     }
 
-    #panorama-360-viewer {
+    .tour-viewport-wrap {
+      position: relative;
       width: 100%;
       height: 560px;
+      background: #0d1a12;
+      overflow: hidden;
+    }
+
+    #panorama-360-viewer {
+      width: 100%;
+      height: 100%;
       background: #0d1a12;
       position: relative;
     }
 
+    .tour-cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(10, 20, 14, 0.7), rgba(10, 20, 14, 0.9)),
+                  url('images/walayar_360_cover.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      z-index: 10;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .tour-cover-content {
+      max-width: 600px;
+    }
+
+    .tour-cover-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      color: #fff;
+      margin-bottom: 0.8rem;
+      line-height: 1.25;
+    }
+
+    .tour-cover-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.6rem;
+    }
+
     @media (max-width: 768px) {
+      .tour-viewport-wrap,
       #panorama-360-viewer {
-        height: 400px;
+        height: 420px;
+      }
+      .tour-cover-overlay {
+        padding: 1.2rem;
       }
     }
 
@@ -5423,30 +5468,56 @@
             <span style="color:var(--text-muted);font-size:0.8rem;">· Walayar (HO), Palakkad, Kerala</span>
           </div>
           <div class="tour-controls-bar">
-            <button class="tour-ctrl-btn" id="btn-360-rotate" onclick="toggle360Rotate()" title="Toggle Auto-Spin">
+            <button class="tour-ctrl-btn" id="btn-360-rotate" onclick="toggle360Rotate()" title="Toggle Auto-Spin" style="display:none;">
               ⏸ Pause Spin
             </button>
-            <button class="tour-ctrl-btn" onclick="zoom360(-15)" title="Zoom In">
+            <button class="tour-ctrl-btn" id="btn-360-zoomin" onclick="zoom360(-15)" title="Zoom In" style="display:none;">
               🔍+
             </button>
-            <button class="tour-ctrl-btn" onclick="zoom360(15)" title="Zoom Out">
+            <button class="tour-ctrl-btn" id="btn-360-zoomout" onclick="zoom360(15)" title="Zoom Out" style="display:none;">
               🔍-
             </button>
-            <button class="tour-ctrl-btn" onclick="reset360View()" title="Reset View">
+            <button class="tour-ctrl-btn" id="btn-360-reset" onclick="reset360View()" title="Reset View" style="display:none;">
               ↺ Reset
             </button>
-            <button class="tour-ctrl-btn" onclick="fullscreen360()" title="Toggle Fullscreen">
+            <button class="tour-ctrl-btn" id="btn-360-fs" onclick="fullscreen360()" title="Toggle Fullscreen" style="display:none;">
               ⛶ Fullscreen
             </button>
           </div>
         </div>
 
-        <!-- 360 Panorama Container -->
-        <div id="panorama-360-viewer"></div>
+        <!-- 360 Viewport with On-Demand Cloud Streaming -->
+        <div class="tour-viewport-wrap">
+          <div id="panorama-360-viewer"></div>
 
-        <!-- Interactive Drag Hint -->
-        <div class="tour-hints-overlay" id="tour-hint">
-          <span>👆 Drag to rotate 360° · Scroll to zoom · Click Fullscreen for full immersion</span>
+          <!-- On-Demand Cover Overlay (Zero upfront loading overhead) -->
+          <div id="panorama-cover-overlay" class="tour-cover-overlay">
+            <div class="tour-cover-content">
+              <div class="tour-360-badge" style="margin-bottom:0.8rem;">
+                <span class="tour-pulse-dot"></span> Google Street View 360° Photosphere
+              </div>
+              <h3 class="tour-cover-heading">
+                Step Inside Our Walayar Hospital Grounds
+              </h3>
+              <p class="tour-cover-desc">
+                Experience an interactive 360° walk through our main campus. Streams on-demand directly via Google's cloud edge servers without slowing down your page.
+              </p>
+              <button class="btn-primary" onclick="launch360Tour()" id="btn-launch-360" style="margin:0 auto;cursor:pointer;box-shadow:0 8px 30px rgba(168,197,160,0.3);">
+                <span>🌐</span> Stream Interactive 360° Tour
+              </button>
+              <div style="margin-top:1.2rem;">
+                <a href="https://www.google.com/maps/@10.8209446,76.8118097,3a,75y,175h,90t/data=!3m8!1e1!3m6!1sCIABIhAxgiiDkVySYleKfYLIizXI!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgpms-cs-s%2FAFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0%3Dw900-h600-k-no-pi0-ya0-ro0-fo100!7i11904!8i5952?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:0.82rem;text-decoration:underline;">
+                  Or open full view in Google Maps app ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Drag Hint -->
+          <div class="tour-hints-overlay" id="tour-hint" style="display:none;">
+            <span>👆 Drag to rotate 360° · Scroll to zoom · Click Fullscreen for full immersion</span>
+          </div>
         </div>
       </div>
 
@@ -5865,20 +5936,36 @@
   <script src="vendor/pannellum.js"></script>
   <script>
     // ============================================
-    // 360° VIRTUAL TOUR PANORAMA VIEWER
+    // 360° VIRTUAL TOUR PANORAMA VIEWER (CLOUD STREAMING API)
     // ============================================
     let panoramaViewer = null;
     let isAutoRotating = true;
 
-    function initPanoramaViewer() {
-      const container = document.getElementById('panorama-360-viewer');
-      if (!container || panoramaViewer) return;
+    function launch360Tour() {
+      const overlay = document.getElementById('panorama-cover-overlay');
+      const btn = document.getElementById('btn-launch-360');
+      const hint = document.getElementById('tour-hint');
+
+      if (btn) {
+        btn.innerHTML = '<span>⏳</span> Connecting to Google Cloud API...';
+        btn.style.opacity = '0.85';
+        btn.disabled = true;
+      }
+
+      // Show controls
+      ['btn-360-rotate', 'btn-360-zoomin', 'btn-360-zoomout', 'btn-360-reset', 'btn-360-fs'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'inline-flex';
+      });
+
+      // Google Cloud CDN optimized API stream URL (high-speed edge cache, ~300KB)
+      const cloudPanoUrl = 'https://lh3.googleusercontent.com/gpms-cs-s/AFP8RcPJzERyzdX1ciqtM_7EQP3xT-yc_SasBPzcGBqdiaGZk0vmMxLnq4W4e6Pf-o8qS1gicsykZp0P6UY0l4LGfE9yAvGAysv39abn93ZsaQ9UitMoVL6MUYi3r_8PE6nWxaNYYTtud2TDJS0=w1800-h900';
 
       if (typeof pannellum !== 'undefined') {
         try {
           panoramaViewer = pannellum.viewer('panorama-360-viewer', {
             type: 'equirectangular',
-            panorama: 'images/walayar_360_panorama.jpg',
+            panorama: cloudPanoUrl,
             autoLoad: true,
             autoRotate: -1.8,
             autoRotateInactivityDelay: 3500,
@@ -5892,13 +5979,47 @@
             pitch: 0,
             yaw: 175,
             title: 'Eden Ayurveda Hospital & Pharmacy — Walayar, Palakkad',
-            author: 'Eden Ayurveda Hospital',
+            author: 'Google Street View',
             strings: {
-              loadingLabel: 'Loading 360° Hospital View...'
+              loadingLabel: 'Streaming 360° Photosphere from Google Cloud...'
+            }
+          });
+
+          panoramaViewer.on('load', () => {
+            if (overlay) {
+              overlay.style.opacity = '0';
+              setTimeout(() => {
+                overlay.style.display = 'none';
+                if (hint) hint.style.display = 'flex';
+              }, 500);
+            }
+          });
+
+          panoramaViewer.on('error', () => {
+            // Fallback to local image if CDN or CORS is blocked
+            console.warn('Falling back to local 360 asset');
+            if (panoramaViewer) {
+              panoramaViewer.destroy();
+            }
+            panoramaViewer = pannellum.viewer('panorama-360-viewer', {
+              type: 'equirectangular',
+              panorama: 'images/walayar_360_panorama.jpg',
+              autoLoad: true,
+              autoRotate: -1.8,
+              showZoomCtrl: false,
+              showFullscreenCtrl: false,
+              mouseZoom: true
+            });
+            if (overlay) {
+              overlay.style.opacity = '0';
+              setTimeout(() => {
+                overlay.style.display = 'none';
+                if (hint) hint.style.display = 'flex';
+              }, 500);
             }
           });
         } catch (e) {
-          console.error('Pannellum init error:', e);
+          console.error('Pannellum error:', e);
         }
       }
     }
@@ -5933,20 +6054,6 @@
     function fullscreen360() {
       if (!panoramaViewer) return;
       panoramaViewer.toggleFullscreen();
-    }
-
-    // Lazy load the 360 viewer when scrolled into proximity
-    const tourSection = document.getElementById('virtual-tour');
-    if (tourSection) {
-      const tourObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            initPanoramaViewer();
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '200px 0px' });
-      tourObserver.observe(tourSection);
     }
 
     // ============================================
