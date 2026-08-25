@@ -69,8 +69,14 @@
   }
 }
 </script>
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23213a2b'/%3E%3Cpath d='M50 15 C50 15 18 38 18 60 C18 75 32 85 50 85 C68 85 82 75 82 60 C82 38 50 15 50 15Z' fill='none' stroke='%23a8c5a0' stroke-width='3'/%3E%3Cline x1='50' y1='15' x2='50' y2='88' stroke='%23a8c5a0' stroke-width='2.5'/%3E%3Cellipse cx='50' cy='80' rx='14' ry='5' fill='none' stroke='%23a8c5a0' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon-512x512.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -2019,6 +2025,18 @@
     .contact-info-value {
       font-size: 0.88rem;
       color: var(--text-primary);
+    }
+
+    .contact-info-value a {
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: color 0.2s ease, text-decoration 0.2s ease;
+    }
+
+    .contact-info-value a:hover {
+      color: var(--gold-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     .contact-form-card {
@@ -5585,14 +5603,19 @@
               <div class="contact-info-icon">📞</div>
               <div>
                 <div class="contact-info-label">Phone & WhatsApp</div>
-                <div class="contact-info-value">+91 9061218055<br>Available 8AM – 8PM IST</div>
+                <div class="contact-info-value">
+                  <a href="tel:+919061218055" title="Call Eden Ayurveda Hospital" style="font-weight:600;letter-spacing:0.02em;">+91 9061218055</a><br>
+                  <span style="font-size:0.8rem;color:var(--text-secondary);">Available 8AM – 8PM IST</span>
+                </div>
               </div>
             </div>
             <div class="contact-info-item reveal">
               <div class="contact-info-icon">✉️</div>
               <div>
                 <div class="contact-info-label">Email</div>
-                <div class="contact-info-value">edenayurvedahospital@gmail.com</div>
+                <div class="contact-info-value">
+                  <a href="mailto:edenayurvedahospital@gmail.com" title="Email Eden Ayurveda Hospital">edenayurvedahospital@gmail.com</a>
+                </div>
               </div>
             </div>
             <div class="contact-info-item reveal">
